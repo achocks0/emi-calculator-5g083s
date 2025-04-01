@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" 
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+    
+    <!-- Product Information -->
+    <Product Id="*" 
+             Name="$(app.name)" 
+             Version="$(app.version)" 
+             Manufacturer="$(app.vendor)" 
+             UpgradeCode="$(win.upgrade.uuid)" 
+             Language="1033">
+        
+        <!-- Package Information -->
+        <Package InstallerVersion="200" 
+                 Compressed="yes" 
+                 InstallScope="perMachine" 
+                 Description="$(app.description)" 
+                 Comments="Windows Installer for $(app.name)"
+                 Manufacturer="$(app.vendor)" />
+        
+        <!-- Media -->
+        <Media Id="1" Cabinet="main.cab" EmbedCab="yes" />
+        
+        <!-- Upgrade Behavior -->
+        <MajorUpgrade Schedule="afterInstallInitialize"
+                      DowngradeErrorMessage="A newer version of $(app.name) is already installed. Setup will now exit." 
+                      AllowSameVersionUpgrades="yes" />
+        
+        <!-- Icons -->
+        <Icon Id="AppIcon.ico" SourceFile="AppIcon.ico" />
+        <Property Id="ARPPRODUCTICON" Value="AppIcon.ico" />
+        
+        <!-- Add/Remove Programs Information -->
+        <Property Id="ARPHELPTELEPHONE" Value="" />
+        <Property Id="ARPHELPLINK" Value="" />
+        <Property Id="ARPURLINFOABOUT" Value="" />
+        <Property Id="ARPURLUPDATEINFO" Value="" />
+        <Property Id="ARPNOMODIFY" Value="1" />
+        <Property Id="ARPNOREPAIR" Value="1" />
+        
+        <!-- UI -->
+        <UI Id="WixUI_InstallDir">
+            <UIRef Id="WixUI_InstallDir" />
+            <UIRef Id="WixUI_ErrorProgressText" />
+            
+            <!-- Customize specific dialogs -->
+            <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="LicenseAgreementDlg" Order="2">1</Publish>
+            <Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">1</Publish>
+        </UI>
+        
+        <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
+        
+        <!-- License and UI Resources -->
+        <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+        <WixVariable Id="WixUIDialogBmp" Value="dialog_background.bmp" />
+        <WixVariable Id="WixUIBannerBmp" Value="banner.bmp" />
+        
+        <!-- Directory Structure -->
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="COMPANYFOLDER" Name="$(app.vendor)">
+                    <Directory Id="INSTALLLOCATION" Name="$(app.name)">
+                        <!-- Application Files -->
+                        <Directory Id="APPFOLDER" Name="app">
+                            <!-- Main Application Components -->
+                            <Component Id="ApplicationExecutable" Guid="*">
+                                <File Id="ApplicationExe" 
+                                      Source="$(win.dir.installLocation)\$(app.name).exe" 
+                                      KeyPath="yes">
+                                    <Shortcut Id="DesktopShortcut" 
+                                              Directory="DesktopFolder" 
+                                              Name="$(app.name)" 
+                                              Description="$(app.description)"
+                                              WorkingDirectory="APPFOLDER" 
+                                              Icon="AppIcon.ico" 
+                                              IconIndex="0" 
+                                              Advertise="yes" />
+                                              
+                                    <Shortcut Id="StartMenuShortcut" 
+                                              Directory="ProgramMenuDir" 
+                                              Name="$(app.name)" 
+                                              Description="$(app.description)"
+                                              WorkingDirectory="APPFOLDER" 
+                                              Icon="AppIcon.ico" 
+                                              IconIndex="0" 
+                                              Advertise="yes" />
+                                </File>
+                            </Component>
+                            
+                            <!-- Application Libraries -->
+                            <Component Id="ApplicationLibraries" Guid="*">
+                                <File Id="AppLibJar" Source="$(win.dir.installLocation)\lib\app.jar" KeyPath="yes" />
+                                <RemoveFolder Id="APPFOLDER" On="uninstall" />
+                            </Component>
+                        </Directory>
+                        
+                        <!-- Bundled JRE -->
+                        <Directory Id="JREFOLDER" Name="jre">
+                            <Component Id="JREFiles" Guid="*">
+                                <File Id="JREExe" Source="$(win.dir.installLocation)\jre\bin\java.exe" KeyPath="yes" />
+                                <RemoveFolder Id="JREFOLDER" On="uninstall" />
+                            </Component>
+                            
+                            <!-- Reference to externally generated JRE components -->
+                            <ComponentGroupRef Id="JreComponentGroup" />
+                        </Directory>
+                        
+                        <!-- Documentation -->
+                        <Directory Id="DOCFOLDER" Name="doc">
+                            <Component Id="Documentation" Guid="*">
+                                <File Id="UserManual" Source="$(win.dir.installLocation)\doc\UserManual.pdf" KeyPath="yes" />
+                                <RemoveFolder Id="DOCFOLDER" On="uninstall" />
+                            </Component>
+                        </Directory>
+                        
+                        <!-- Remove install directory when empty -->
+                        <Component Id="RemoveInstallFolder" Guid="*">
+                            <RemoveFolder Id="INSTALLLOCATION" On="uninstall" />
+                            <RemoveFolder Id="COMPANYFOLDER" On="uninstall" />
+                            <RegistryValue Root="HKCU" Key="Software\$(app.vendor)\$(app.name)" 
+                                           Name="installed" Type="integer" Value="1" KeyPath="yes" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+            
+            <!-- Desktop Folder -->
+            <Directory Id="DesktopFolder" Name="Desktop" />
+            
+            <!-- Start Menu Programs Folder -->
+            <Directory Id="ProgramMenuFolder" Name="Programs">
+                <Directory Id="ProgramMenuDir" Name="$(win.menu.group)">
+                    <Component Id="ProgramMenuDir" Guid="*">
+                        <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+                        <RegistryValue Root="HKCU" 
+                                       Key="Software\$(app.vendor)\$(app.name)" 
+                                       Type="string" 
+                                       Value="" 
+                                       KeyPath="yes" />
+                    </Component>
+                </Directory>
+            </Directory>
+        </Directory>
+        
+        <!-- Registry Entries -->
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="RegistryEntries" Guid="*">
+                <RegistryKey Root="HKCU"
+                             Key="Software\$(app.vendor)\$(app.name)">
+                    <RegistryValue Type="string" Name="InstallDir" Value="[INSTALLLOCATION]" KeyPath="yes" />
+                    <RegistryValue Type="string" Name="Version" Value="$(app.version)" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+        
+        <!-- Features -->
+        <Feature Id="Complete" 
+                 Title="$(app.name)" 
+                 Level="1"
+                 Description="Installs the complete application with all components."
+                 Display="expand"
+                 ConfigurableDirectory="INSTALLLOCATION">
+                 
+            <Feature Id="MainApplication" 
+                     Title="Application Files" 
+                     Level="1" 
+                     Description="The core application files.">
+                <ComponentRef Id="ApplicationExecutable" />
+                <ComponentRef Id="ApplicationLibraries" />
+                <ComponentRef Id="ProgramMenuDir" />
+                <ComponentRef Id="RegistryEntries" />
+                <ComponentRef Id="RemoveInstallFolder" />
+            </Feature>
+            
+            <Feature Id="JRE" 
+                     Title="Java Runtime Environment" 
+                     Level="1" 
+                     Description="Java Runtime Environment required to run the application.">
+                <ComponentRef Id="JREFiles" />
+                <ComponentGroupRef Id="JreComponentGroup" />
+            </Feature>
+            
+            <Feature Id="Documentation" 
+                     Title="Documentation" 
+                     Level="1" 
+                     Description="User manual and documentation.">
+                <ComponentRef Id="Documentation" />
+            </Feature>
+        </Feature>
+        
+        <!-- Launch application after installation -->
+        <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch $(app.name)" />
+        <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
+        <Property Id="WixShellExecTarget" Value="[#ApplicationExe]" />
+        <CustomAction Id="LaunchApplication" 
+                      BinaryKey="WixCA" 
+                      DllEntry="WixShellExec"
+                      Impersonate="yes" />
+        
+        <UI>
+            <Publish Dialog="ExitDialog" 
+                     Control="Finish" 
+                     Event="DoAction" 
+                     Value="LaunchApplication">
+                WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed
+            </Publish>
+        </UI>
+        
+        <!-- Set default installation location -->
+        <SetProperty Id="INSTALLLOCATION" Value="[ProgramFilesFolder]$(app.vendor)\$(app.name)" After="AppSearch">
+            NOT INSTALLLOCATION
+        </SetProperty>
+        
+    </Product>
+</Wix>
