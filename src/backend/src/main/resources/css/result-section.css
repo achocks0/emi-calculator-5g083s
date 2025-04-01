@@ -1,0 +1,155 @@
+/* Result Section Styling */
+@import "../application.css";
+
+.result-section {
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    border-color: #DDDDDD;
+    border-width: 1px;
+    border-style: solid;
+    margin-bottom: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);
+}
+
+.result-section .section-title {
+    font-size: 14pt;
+    font-weight: bold;
+    text-fill: #1A365D;
+    padding-bottom: 15px;
+}
+
+.result-row {
+    alignment: CENTER_LEFT;
+    spacing: 10px;
+    padding: 5px 0;
+}
+
+.field-label {
+    min-width: 150px;
+    font-weight: normal;
+    text-fill: #333333;
+}
+
+.emi-amount-label {
+    font-size: 16pt;
+    font-weight: bold;
+    text-fill: #1A365D;
+}
+
+.info-label {
+    font-size: 11pt;
+    text-fill: #666666;
+    font-style: italic;
+    padding: 5px 0 10px 0;
+    graphic-text-gap: 5px;
+}
+
+.info-label .graphic {
+    fill: #0066CC;
+}
+
+.detailed-results-pane {
+    animated: true;
+    -fx-animated: true;
+    collapsible: true;
+    -fx-collapsible: true;
+}
+
+.detailed-results-pane > .title {
+    font-size: 12pt;
+    font-weight: bold;
+    text-fill: #1A365D;
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1A365D;
+}
+
+.detailed-results-pane > .content {
+    padding: 10px;
+    -fx-padding: 10px;
+}
+
+.detailed-results-grid {
+    hgap: 15;
+    vgap: 10;
+    padding: 5px;
+    -fx-hgap: 15;
+    -fx-vgap: 10;
+    -fx-padding: 5px;
+}
+
+.currency-value {
+    font-weight: bold;
+    text-fill: #1A365D;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1A365D;
+}
+
+.field-value {
+    font-weight: normal;
+    text-fill: #333333;
+    -fx-font-weight: normal;
+    -fx-text-fill: #333333;
+}
+
+.toggle-details-button {
+    font-size: 11pt;
+    padding: 5px 10px;
+    background-color: #F0F0F0;
+    text-fill: #333333;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    border-radius: 3px;
+    cursor: hand;
+    margin-top: 5px;
+    -fx-font-size: 11pt;
+    -fx-padding: 5px 10px;
+    -fx-background-color: #F0F0F0;
+    -fx-text-fill: #333333;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-cursor: hand;
+    -fx-margin-top: 5px;
+}
+
+.toggle-details-button:hover {
+    background-color: #E8E8E8;
+    -fx-background-color: #E8E8E8;
+}
+
+.toggle-details-button:pressed {
+    background-color: #DDDDDD;
+    -fx-background-color: #DDDDDD;
+}
+
+.separator {
+    opacity: 0.3;
+    -fx-opacity: 0.3;
+    padding: 5px 0;
+    -fx-padding: 5px 0;
+}
+
+/* Responsive Styling */
+@media screen and (max-width: 800px) {
+    .field-label {
+        min-width: 120px;
+        -fx-min-width: 120px;
+    }
+    
+    .emi-amount-label {
+        font-size: 14pt;
+        -fx-font-size: 14pt;
+    }
+    
+    .detailed-results-grid {
+        hgap: 10;
+        -fx-hgap: 10;
+    }
+    
+    .result-section {
+        padding: 15px;
+        -fx-padding: 15px;
+    }
+}
