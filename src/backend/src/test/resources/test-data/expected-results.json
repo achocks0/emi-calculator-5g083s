@@ -1,0 +1,254 @@
+[
+  {
+    "description": "Standard loan scenario with medium principal and medium duration",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": "5",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "200.38",
+      "totalAmount": "12022.80",
+      "interestAmount": "2022.80",
+      "numberOfInstallments": 60
+    }
+  },
+  {
+    "description": "Small loan scenario with short duration",
+    "input": {
+      "principal": "1000.00",
+      "durationYears": "1",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "86.53",
+      "totalAmount": "1038.36",
+      "interestAmount": "38.36",
+      "numberOfInstallments": 12
+    }
+  },
+  {
+    "description": "Large loan scenario with long duration",
+    "input": {
+      "principal": "100000.00",
+      "durationYears": "30",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "699.21",
+      "totalAmount": "251717.60",
+      "interestAmount": "151717.60",
+      "numberOfInstallments": 360
+    }
+  },
+  {
+    "description": "Medium loan with medium duration",
+    "input": {
+      "principal": "25000.00",
+      "durationYears": "5",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "500.95",
+      "totalAmount": "30057.00",
+      "interestAmount": "5057.00",
+      "numberOfInstallments": 60
+    }
+  },
+  {
+    "description": "Medium loan with long duration",
+    "input": {
+      "principal": "25000.00",
+      "durationYears": "15",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "231.67",
+      "totalAmount": "41700.60",
+      "interestAmount": "16700.60",
+      "numberOfInstallments": 180
+    }
+  },
+  {
+    "description": "Zero interest rate scenario",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": "5",
+      "interestRate": "0.0"
+    },
+    "expected_results": {
+      "emiAmount": "166.67",
+      "totalAmount": "10000.20",
+      "interestAmount": "0.20",
+      "numberOfInstallments": 60
+    }
+  },
+  {
+    "description": "Low interest rate scenario",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": "5",
+      "interestRate": "0.03"
+    },
+    "expected_results": {
+      "emiAmount": "179.69",
+      "totalAmount": "10781.40",
+      "interestAmount": "781.40",
+      "numberOfInstallments": 60
+    }
+  },
+  {
+    "description": "High interest rate scenario",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": "5",
+      "interestRate": "0.12"
+    },
+    "expected_results": {
+      "emiAmount": "222.44",
+      "totalAmount": "13346.40",
+      "interestAmount": "3346.40",
+      "numberOfInstallments": 60
+    }
+  },
+  {
+    "description": "Very short loan duration",
+    "input": {
+      "principal": "5000.00",
+      "durationYears": "1",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "432.65",
+      "totalAmount": "5191.80",
+      "interestAmount": "191.80",
+      "numberOfInstallments": 12
+    }
+  },
+  {
+    "description": "Very long loan duration",
+    "input": {
+      "principal": "5000.00",
+      "durationYears": "30",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "34.96",
+      "totalAmount": "12585.60",
+      "interestAmount": "7585.60",
+      "numberOfInstallments": 360
+    }
+  },
+  {
+    "description": "Principal at boundary value (minimum)",
+    "input": {
+      "principal": "1000.00",
+      "durationYears": "5",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "20.04",
+      "totalAmount": "1202.40",
+      "interestAmount": "202.40",
+      "numberOfInstallments": 60
+    }
+  },
+  {
+    "description": "Principal at boundary value (maximum)",
+    "input": {
+      "principal": "1000000.00",
+      "durationYears": "5",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "20038.00",
+      "totalAmount": "1202280.00",
+      "interestAmount": "202280.00",
+      "numberOfInstallments": 60
+    }
+  },
+  {
+    "description": "Duration at boundary value (minimum)",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": "1",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "865.27",
+      "totalAmount": "10383.24",
+      "interestAmount": "383.24",
+      "numberOfInstallments": 12
+    }
+  },
+  {
+    "description": "Duration at boundary value (maximum)",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": "30",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "69.92",
+      "totalAmount": "25171.20",
+      "interestAmount": "15171.20",
+      "numberOfInstallments": 360
+    }
+  },
+  {
+    "description": "Typical home loan scenario",
+    "input": {
+      "principal": "250000.00",
+      "durationYears": "25",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "1823.76",
+      "totalAmount": "547128.00",
+      "interestAmount": "297128.00",
+      "numberOfInstallments": 300
+    }
+  },
+  {
+    "description": "Sample calculation from technical specification (1)",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": "5",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "200.38",
+      "totalAmount": "12022.80",
+      "interestAmount": "2022.80",
+      "numberOfInstallments": 60
+    }
+  },
+  {
+    "description": "Sample calculation from technical specification (2)",
+    "input": {
+      "principal": "25000.00",
+      "durationYears": "3",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "777.23",
+      "totalAmount": "27980.28",
+      "interestAmount": "2980.28",
+      "numberOfInstallments": 36
+    }
+  },
+  {
+    "description": "Principal with decimal places",
+    "input": {
+      "principal": "5250.75",
+      "durationYears": "5",
+      "interestRate": "0.075"
+    },
+    "expected_results": {
+      "emiAmount": "105.22",
+      "totalAmount": "6313.20",
+      "interestAmount": "1062.45",
+      "numberOfInstallments": 60
+    }
+  }
+]
