@@ -1,0 +1,120 @@
+/* 
+ * action-section.css
+ * Specific styling for the action section of the Compound Interest Calculator
+ * JavaFX CSS version: 11
+ */
+
+/* Import global styles */
+@import '../application.css';
+
+/* Action Section Styling */
+.action-section {
+    padding: 20px;
+    alignment: CENTER;
+    spacing: 20px;
+    
+    -fx-padding: 20px;
+    -fx-alignment: CENTER;
+    -fx-spacing: 20px;
+}
+
+/* Calculate EMI Button - Primary Action */
+.calculate-button {
+    font-size: 12pt;
+    font-weight: bold;
+    padding: 10px 20px;
+    min-width: 150px;
+    background-color: #0066CC;
+    text-fill: white;
+    cursor: hand;
+    
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-min-width: 150px;
+    -fx-background-color: #0066CC;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0, 0, 1);
+}
+
+.calculate-button:hover {
+    background-color: #0055AA;
+    
+    -fx-background-color: #0055AA;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0, 0, 1);
+}
+
+.calculate-button:pressed {
+    background-color: #004488;
+    
+    -fx-background-color: #004488;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 2, 0, 0, 0);
+}
+
+.calculate-button:disabled {
+    background-color: #CCCCCC;
+    text-fill: #888888;
+    opacity: 0.8;
+    
+    -fx-background-color: #CCCCCC;
+    -fx-text-fill: #888888;
+    -fx-opacity: 0.8;
+    -fx-effect: none;
+}
+
+/* New Calculation Button - Secondary Action */
+.new-calculation-button {
+    font-size: 12pt;
+    font-weight: bold;
+    padding: 10px 20px;
+    min-width: 150px;
+    background-color: #F0F0F0;
+    text-fill: #333333;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    cursor: hand;
+    
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-min-width: 150px;
+    -fx-background-color: #F0F0F0;
+    -fx-text-fill: #333333;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+}
+
+.new-calculation-button:hover {
+    background-color: #E8E8E8;
+    
+    -fx-background-color: #E8E8E8;
+}
+
+.new-calculation-button:pressed {
+    background-color: #DDDDDD;
+    
+    -fx-background-color: #DDDDDD;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 800px) {
+    .action-section {
+        padding: 15px;
+        spacing: 15px;
+        
+        -fx-padding: 15px;
+        -fx-spacing: 15px;
+    }
+    
+    .calculate-button, .new-calculation-button {
+        padding: 8px 15px;
+        min-width: 120px;
+        font-size: 11pt;
+        
+        -fx-padding: 8px 15px;
+        -fx-min-width: 120px;
+        -fx-font-size: 11pt;
+    }
+}
