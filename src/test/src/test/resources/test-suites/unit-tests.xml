@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Compound Interest Calculator - Unit Tests" verbose="true">
+    <test name="Unit Tests Suite" preserve-order="true">
+        <packages>
+            <package name="com.bank.calculator.test.unit.*"/>
+        </packages>
+        <classes>
+            <!-- Model Tests -->
+            <class name="com.bank.calculator.test.unit.model.CalculationInputTest"/>
+            <class name="com.bank.calculator.test.unit.model.CalculationResultTest"/>
+            <class name="com.bank.calculator.test.unit.model.ValidationResultTest"/>
+            
+            <!-- Utility Tests -->
+            <class name="com.bank.calculator.test.unit.util.BigDecimalUtilsTest"/>
+            <class name="com.bank.calculator.test.unit.util.CurrencyUtilsTest"/>
+            <class name="com.bank.calculator.test.unit.util.ValidationUtilsTest"/>
+            
+            <!-- Service Tests -->
+            <class name="com.bank.calculator.test.unit.service.CalculationServiceTest"/>
+            <class name="com.bank.calculator.test.unit.service.ValidationServiceTest"/>
+            
+            <!-- Controller Tests -->
+            <class name="com.bank.calculator.test.unit.controller.CalculatorControllerTest"/>
+            
+            <!-- UI Component Tests -->
+            <class name="com.bank.calculator.test.unit.ui.formatter.CurrencyFormatterTest"/>
+            <class name="com.bank.calculator.test.unit.ui.validator.InputValidatorTest"/>
+        </classes>
+        <groups>
+            <run>
+                <include name="unit"/>
+            </run>
+        </groups>
+    </test>
+    
+    <listeners>
+        <listener class-name="com.bank.calculator.test.util.TestReportListener"/>
+        <listener class-name="com.bank.calculator.test.util.CoverageListener"/>
+    </listeners>
+    
+    <parameter name="generate-unit-report" value="true"/>
+    <parameter name="report-output-directory" value="target/unit-test-reports"/>
+    <parameter name="coverage-threshold" value="85"/>
+</suite>
