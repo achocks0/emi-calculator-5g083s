@@ -1,0 +1,132 @@
+[
+  {
+    "description": "Standard loan calculation with medium principal and medium duration",
+    "input": {
+      "principal": 10000.0,
+      "durationYears": 5,
+      "interestRate": 7.5
+    },
+    "expected": {
+      "emiAmount": 200.38,
+      "totalAmount": 12022.8,
+      "interestAmount": 2022.8
+    }
+  },
+  {
+    "description": "Large principal with short duration",
+    "input": {
+      "principal": 25000.0,
+      "durationYears": 3,
+      "interestRate": 7.5
+    },
+    "expected": {
+      "emiAmount": 777.23,
+      "totalAmount": 27980.28,
+      "interestAmount": 2980.28
+    }
+  },
+  {
+    "description": "Small principal with long duration",
+    "input": {
+      "principal": 5000.0,
+      "durationYears": 10,
+      "interestRate": 7.5
+    },
+    "expected": {
+      "emiAmount": 59.28,
+      "totalAmount": 7113.6,
+      "interestAmount": 2113.6
+    }
+  },
+  {
+    "description": "Very large principal with very long duration",
+    "input": {
+      "principal": 1000000.0,
+      "durationYears": 30,
+      "interestRate": 7.5
+    },
+    "expected": {
+      "emiAmount": 6988.26,
+      "totalAmount": 2515773.6,
+      "interestAmount": 1515773.6
+    }
+  },
+  {
+    "description": "Very small principal with very short duration",
+    "input": {
+      "principal": 1000.0,
+      "durationYears": 1,
+      "interestRate": 7.5
+    },
+    "expected": {
+      "emiAmount": 86.53,
+      "totalAmount": 1038.36,
+      "interestAmount": 38.36
+    }
+  },
+  {
+    "description": "Zero interest rate test case",
+    "input": {
+      "principal": 12000.0,
+      "durationYears": 2,
+      "interestRate": 0.0
+    },
+    "expected": {
+      "emiAmount": 500.0,
+      "totalAmount": 12000.0,
+      "interestAmount": 0.0
+    }
+  },
+  {
+    "description": "Fractional years test case",
+    "input": {
+      "principal": 15000.0,
+      "durationYears": 1.5,
+      "interestRate": 7.5
+    },
+    "expected": {
+      "emiAmount": 1044.51,
+      "totalAmount": 15667.65,
+      "interestAmount": 667.65
+    }
+  },
+  {
+    "description": "High interest rate test case",
+    "input": {
+      "principal": 8000.0,
+      "durationYears": 4,
+      "interestRate": 15.0
+    },
+    "expected": {
+      "emiAmount": 222.59,
+      "totalAmount": 10684.32,
+      "interestAmount": 2684.32
+    }
+  },
+  {
+    "description": "Low interest rate test case",
+    "input": {
+      "principal": 20000.0,
+      "durationYears": 5,
+      "interestRate": 3.0
+    },
+    "expected": {
+      "emiAmount": 359.37,
+      "totalAmount": 21562.2,
+      "interestAmount": 1562.2
+    }
+  },
+  {
+    "description": "Boundary case - minimum principal",
+    "input": {
+      "principal": 0.01,
+      "durationYears": 1,
+      "interestRate": 7.5
+    },
+    "expected": {
+      "emiAmount": 0.0,
+      "totalAmount": 0.01,
+      "interestAmount": 0.0
+    }
+  }
+]
