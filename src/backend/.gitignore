@@ -1,0 +1,61 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+logs/
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# IDE-specific files
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+build/
+
+# VS Code
+.vscode/
+
+# JavaFX specific
+.scene-builder/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Test reports and generated files
+test-output/
+surefire-reports/
+failsafe-reports/
+jacoco-reports/
+
+# Backend-specific configuration files
+application-local.properties
+application-dev.properties
+
+# Temporary files
+tmp/
+temp/
