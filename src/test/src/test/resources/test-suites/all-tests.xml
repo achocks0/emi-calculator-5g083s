@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Compound Interest Calculator - All Tests" verbose="true" parallel="false">
+    <suite-files>
+        <suite-file path="unit-tests.xml"/>
+        <suite-file path="integration-tests.xml"/>
+        <suite-file path="ui-tests.xml"/>
+        <suite-file path="performance-tests.xml"/>
+        <suite-file path="security-tests.xml"/>
+    </suite-files>
+    
+    <test name="All Tests Suite" preserve-order="true">
+        <packages>
+            <package name="com.bank.calculator.test.*"/>
+        </packages>
+        <groups>
+            <run>
+                <include name="unit"/>
+                <include name="integration"/>
+                <include name="ui"/>
+                <include name="performance"/>
+                <include name="security"/>
+            </run>
+        </groups>
+    </test>
+    
+    <listeners>
+        <listener class-name="com.bank.calculator.test.util.TestReportListener"/>
+        <listener class-name="com.bank.calculator.test.util.CoverageListener"/>
+        <listener class-name="com.bank.calculator.test.util.PerformanceTestListener"/>
+    </listeners>
+    
+    <parameter name="generate-comprehensive-report" value="true"/>
+    <parameter name="report-output-directory" value="target/test-reports"/>
+</suite>
