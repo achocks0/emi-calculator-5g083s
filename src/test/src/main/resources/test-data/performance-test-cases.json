@@ -1,0 +1,360 @@
+{
+  "description": "Performance test cases for the Compound Interest Calculator application",
+  "version": "1.0",
+  "categories": {
+    "calculation_performance": {
+      "description": "Test cases for measuring calculation performance",
+      "thresholds": {
+        "standard_calculation_ms": 200,
+        "complex_calculation_ms": 500,
+        "large_value_calculation_ms": 200
+      }
+    },
+    "ui_responsiveness": {
+      "description": "Test cases for measuring UI responsiveness",
+      "thresholds": {
+        "input_response_ms": 100,
+        "button_click_ms": 100,
+        "result_display_ms": 100,
+        "error_display_ms": 100
+      }
+    },
+    "memory_usage": {
+      "description": "Test cases for measuring memory usage",
+      "thresholds": {
+        "standard_calculation_mb": 50,
+        "large_value_calculation_mb": 50,
+        "multiple_calculations_mb": 50,
+        "peak_memory_mb": 100
+      }
+    },
+    "startup_time": {
+      "description": "Test cases for measuring application startup time",
+      "thresholds": {
+        "application_startup_ms": 3000,
+        "ui_initialization_ms": 1000
+      }
+    }
+  },
+  "test_cases": [
+    {
+      "id": "calc-perf-1",
+      "name": "Standard calculation performance",
+      "category": "calculation_performance",
+      "description": "Performance test for standard EMI calculation",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "200.38",
+        "total_amount": "12022.80",
+        "interest_amount": "2022.80",
+        "number_of_installments": 60
+      },
+      "performance_criteria": {
+        "max_execution_time_ms": 200,
+        "iterations": 100,
+        "warmup_iterations": 10
+      }
+    },
+    {
+      "id": "calc-perf-2",
+      "name": "Large value calculation performance",
+      "category": "calculation_performance",
+      "description": "Performance test for EMI calculation with large principal amount",
+      "input": {
+        "principal": "1000000.00",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "20037.80",
+        "total_amount": "1202268.00",
+        "interest_amount": "202268.00",
+        "number_of_installments": 60
+      },
+      "performance_criteria": {
+        "max_execution_time_ms": 200,
+        "iterations": 50,
+        "warmup_iterations": 5
+      }
+    },
+    {
+      "id": "calc-perf-3",
+      "name": "Long duration calculation performance",
+      "category": "calculation_performance",
+      "description": "Performance test for EMI calculation with long loan duration",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 30,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "70.68",
+        "total_amount": "25444.80",
+        "interest_amount": "15444.80",
+        "number_of_installments": 360
+      },
+      "performance_criteria": {
+        "max_execution_time_ms": 200,
+        "iterations": 50,
+        "warmup_iterations": 5
+      }
+    },
+    {
+      "id": "calc-perf-4",
+      "name": "Maximum values calculation performance",
+      "category": "calculation_performance",
+      "description": "Performance test for EMI calculation with maximum allowed values",
+      "input": {
+        "principal": "1000000.00",
+        "duration_years": 30,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "7067.75",
+        "total_amount": "2544390.00",
+        "interest_amount": "1544390.00",
+        "number_of_installments": 360
+      },
+      "performance_criteria": {
+        "max_execution_time_ms": 200,
+        "iterations": 20,
+        "warmup_iterations": 5
+      }
+    },
+    {
+      "id": "calc-perf-5",
+      "name": "Compound interest calculation performance",
+      "category": "calculation_performance",
+      "description": "Performance test for compound interest calculation",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "compound_interest_amount": "12022.80"
+      },
+      "performance_criteria": {
+        "max_execution_time_ms": 100,
+        "iterations": 100,
+        "warmup_iterations": 10
+      }
+    },
+    {
+      "id": "calc-perf-6",
+      "name": "Multiple consecutive calculations",
+      "category": "calculation_performance",
+      "description": "Performance test for multiple consecutive EMI calculations",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "200.38"
+      },
+      "performance_criteria": {
+        "max_execution_time_ms": 200,
+        "iterations": 10,
+        "consecutive_runs": 10,
+        "max_average_time_ms": 150
+      }
+    },
+    {
+      "id": "ui-perf-1",
+      "name": "Text field input responsiveness",
+      "category": "ui_responsiveness",
+      "description": "Performance test for text field input responsiveness",
+      "input": {
+        "principal_field_value": "10000.00",
+        "duration_field_value": "5"
+      },
+      "performance_criteria": {
+        "max_response_time_ms": 100,
+        "iterations": 20
+      }
+    },
+    {
+      "id": "ui-perf-2",
+      "name": "Button click responsiveness",
+      "category": "ui_responsiveness",
+      "description": "Performance test for button click responsiveness",
+      "input": {
+        "button_id": "calculateButton"
+      },
+      "performance_criteria": {
+        "max_response_time_ms": 100,
+        "iterations": 20
+      }
+    },
+    {
+      "id": "ui-perf-3",
+      "name": "Result display responsiveness",
+      "category": "ui_responsiveness",
+      "description": "Performance test for result display update responsiveness",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "200.38"
+      },
+      "performance_criteria": {
+        "max_response_time_ms": 100,
+        "iterations": 20
+      }
+    },
+    {
+      "id": "ui-perf-4",
+      "name": "Error display responsiveness",
+      "category": "ui_responsiveness",
+      "description": "Performance test for error message display responsiveness",
+      "input": {
+        "principal": "-1000.00",
+        "duration_years": 5
+      },
+      "expected_results": {
+        "error_message": "Principal amount must be a positive number"
+      },
+      "performance_criteria": {
+        "max_response_time_ms": 100,
+        "iterations": 20
+      }
+    },
+    {
+      "id": "ui-perf-5",
+      "name": "Complete workflow responsiveness",
+      "category": "ui_responsiveness",
+      "description": "Performance test for complete calculation workflow responsiveness",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "200.38"
+      },
+      "performance_criteria": {
+        "max_response_time_ms": 300,
+        "iterations": 10
+      }
+    },
+    {
+      "id": "ui-perf-6",
+      "name": "Multiple consecutive interactions",
+      "category": "ui_responsiveness",
+      "description": "Performance test for multiple consecutive UI interactions",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "performance_criteria": {
+        "max_response_time_ms": 100,
+        "iterations": 5,
+        "consecutive_runs": 5,
+        "max_average_time_ms": 80
+      }
+    },
+    {
+      "id": "mem-perf-1",
+      "name": "Baseline memory usage",
+      "category": "memory_usage",
+      "description": "Performance test for baseline memory usage after application initialization",
+      "performance_criteria": {
+        "max_memory_usage_mb": 50
+      }
+    },
+    {
+      "id": "mem-perf-2",
+      "name": "Standard calculation memory usage",
+      "category": "memory_usage",
+      "description": "Performance test for memory usage during standard calculation",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "performance_criteria": {
+        "max_memory_usage_mb": 50
+      }
+    },
+    {
+      "id": "mem-perf-3",
+      "name": "Large value calculation memory usage",
+      "category": "memory_usage",
+      "description": "Performance test for memory usage during large value calculation",
+      "input": {
+        "principal": "1000000.00",
+        "duration_years": 30,
+        "interest_rate": "7.5"
+      },
+      "performance_criteria": {
+        "max_memory_usage_mb": 50
+      }
+    },
+    {
+      "id": "mem-perf-4",
+      "name": "Multiple calculations memory usage",
+      "category": "memory_usage",
+      "description": "Performance test for memory usage during multiple consecutive calculations",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "performance_criteria": {
+        "max_memory_usage_mb": 50,
+        "iterations": 10
+      }
+    },
+    {
+      "id": "mem-perf-5",
+      "name": "Memory leak absence test",
+      "category": "memory_usage",
+      "description": "Performance test to verify absence of memory leaks during repeated calculations",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "performance_criteria": {
+        "max_memory_usage_mb": 50,
+        "iterations": 100,
+        "max_memory_increase_percentage": 10
+      }
+    },
+    {
+      "id": "startup-perf-1",
+      "name": "Application startup time",
+      "category": "startup_time",
+      "description": "Performance test for application startup time",
+      "performance_criteria": {
+        "max_startup_time_ms": 3000
+      }
+    },
+    {
+      "id": "startup-perf-2",
+      "name": "UI initialization time",
+      "category": "startup_time",
+      "description": "Performance test for UI initialization time",
+      "performance_criteria": {
+        "max_initialization_time_ms": 1000
+      }
+    }
+  ],
+  "test_configuration": {
+    "environment_factors": {
+      "ci_environment_factor": 1.5,
+      "development_environment_factor": 1.2
+    },
+    "default_iterations": 20,
+    "default_warmup_iterations": 5,
+    "logging_level": "INFO"
+  }
+}
