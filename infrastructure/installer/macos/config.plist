@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Basic Bundle Information -->
+    <key>CFBundleIdentifier</key>
+    <string>${mac.bundle.identifier}</string>
+    <key>CFBundleName</key>
+    <string>${app.name}</string>
+    <key>CFBundleDisplayName</key>
+    <string>${app.name}</string>
+    <key>CFBundleVersion</key>
+    <string>${app.version}</string>
+    <key>CFBundleShortVersionString</key>
+    <string>${app.version}</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleSignature</key>
+    <string>BNKC</string>
+    <key>CFBundleExecutable</key>
+    <string>${app.name}</string>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>English</string>
+    
+    <!-- Visual and UI Settings -->
+    <key>CFBundleIconFile</key>
+    <string>calculator-icon.icns</string>
+    <key>NSHumanReadableCopyright</key>
+    <string>© 2023 Banking Division. All rights reserved.</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSRequiresAquaSystemAppearance</key>
+    <false/>
+    
+    <!-- System Requirements -->
+    <key>LSApplicationCategoryType</key>
+    <string>${mac.category}</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>10.14.0</string>
+    
+    <!-- Application-specific Settings -->
+    <key>NSMainNibFile</key>
+    <string>MainMenu</string>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+    
+    <!-- Java VM Configuration -->
+    <key>JVMOptions</key>
+    <dict>
+        <key>JVMRuntime</key>
+        <string>RUNTIME_HOME</string>
+        <key>JVMMainClassName</key>
+        <string>${app.main.class}</string>
+        <key>JVMAppClasspath</key>
+        <string>app/Compound Interest Calculator.jar</string>
+        <key>JVMDefaultOptions</key>
+        <array>
+            <string>-Xmx512m</string>
+            <string>-Xms128m</string>
+        </array>
+        <key>JVMUserOptions</key>
+        <dict>
+            <key>apple.laf.useScreenMenuBar</key>
+            <string>true</string>
+        </dict>
+    </dict>
+    
+    <!-- Document Types (empty as this app doesn't handle documents) -->
+    <key>CFBundleDocumentTypes</key>
+    <array>
+    </array>
+    
+    <!-- Exported UTIs (empty as this app doesn't define custom file types) -->
+    <key>UTExportedTypeDeclarations</key>
+    <array>
+    </array>
+</dict>
+</plist>
