@@ -1,0 +1,302 @@
+/*
+ * application.css
+ * Main CSS file for the Compound Interest Calculator application
+ * JavaFX CSS version: 11
+ */
+
+/* Global Variables */
+.root {
+    /* Primary Colors */
+    -fx-primary-blue: #0066CC;
+    -fx-primary-blue-dark: #0055AA;
+    -fx-primary-blue-darker: #004488;
+    -fx-primary-text: #1A365D;
+    
+    /* Neutral Colors */
+    -fx-background: #F5F5F5;
+    -fx-text-color: #333333;
+    -fx-secondary-text: #666666;
+    -fx-border-color: #CCCCCC;
+    -fx-light-gray: #F0F0F0;
+    -fx-medium-gray: #E0E0E0;
+    -fx-dark-gray: #DDDDDD;
+    
+    /* Feedback Colors */
+    -fx-error: #CC0000;
+    -fx-error-background: #FFEEEE;
+    -fx-success: #008800;
+    -fx-success-background: #EEFFEE;
+    -fx-warning: #FF8800;
+    -fx-warning-background: #FFFFEE;
+}
+
+/* Base Styles */
+.root {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 12pt;
+    background-color: #F5F5F5;
+    color: #333333;
+    
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 12pt;
+    -fx-background-color: #F5F5F5;
+    -fx-text-fill: #333333;
+}
+
+/* Title Styles */
+.title {
+    font-size: 16pt;
+    font-weight: bold;
+    text-fill: #1A365D;
+    alignment: CENTER;
+    padding: 10px 0 20px 0;
+    
+    -fx-font-size: 16pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1A365D;
+    -fx-alignment: CENTER;
+    -fx-padding: 10px 0 20px 0;
+}
+
+.section-title {
+    font-size: 14pt;
+    font-weight: bold;
+    text-fill: #1A365D;
+    padding-bottom: 10px;
+    
+    -fx-font-size: 14pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1A365D;
+    -fx-padding: 0 0 10px 0;
+}
+
+/* Container Styles */
+.content-container {
+    padding: 20px;
+    spacing: 15px;
+    
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+}
+
+/* Form Element Styles */
+.field-label {
+    font-weight: normal;
+    text-fill: #333333;
+    min-width: 150px;
+    
+    -fx-font-weight: normal;
+    -fx-text-fill: #333333;
+    -fx-min-width: 150px;
+}
+
+.text-field {
+    font-size: 12pt;
+    padding: 8px;
+    background-color: white;
+    border-color: #CCCCCC;
+    border-radius: 3px;
+    min-width: 200px;
+    
+    -fx-font-size: 12pt;
+    -fx-padding: 8px;
+    -fx-background-color: white;
+    -fx-border-color: #CCCCCC;
+    -fx-border-radius: 3px;
+    -fx-min-width: 200px;
+}
+
+.text-field:focused {
+    border-color: #0066CC;
+    
+    -fx-border-color: #0066CC;
+    -fx-effect: dropshadow(gaussian, rgba(0, 102, 204, 0.3), 3, 0, 0, 0);
+}
+
+/* Button Styles */
+.button {
+    font-size: 12pt;
+    font-weight: bold;
+    padding: 10px 20px;
+    min-width: 120px;
+    cursor: hand;
+    
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-min-width: 120px;
+    -fx-cursor: hand;
+}
+
+.primary-button {
+    background-color: #0066CC;
+    text-fill: white;
+    
+    -fx-background-color: #0066CC;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0, 0, 1);
+}
+
+.primary-button:hover {
+    background-color: #0055AA;
+    
+    -fx-background-color: #0055AA;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0, 0, 1);
+}
+
+.primary-button:pressed {
+    background-color: #004488;
+    
+    -fx-background-color: #004488;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 2, 0, 0, 0);
+}
+
+.secondary-button {
+    background-color: #F0F0F0;
+    text-fill: #333333;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    
+    -fx-background-color: #F0F0F0;
+    -fx-text-fill: #333333;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+}
+
+.secondary-button:hover {
+    background-color: #E8E8E8;
+    
+    -fx-background-color: #E8E8E8;
+}
+
+.secondary-button:pressed {
+    background-color: #DDDDDD;
+    
+    -fx-background-color: #DDDDDD;
+}
+
+/* Message and Indicator Styles */
+.error-label {
+    font-size: 11pt;
+    text-fill: #CC0000;
+    font-style: italic;
+    padding: 3px 0 0 0;
+    
+    -fx-font-size: 11pt;
+    -fx-text-fill: #CC0000;
+    -fx-font-style: italic;
+    -fx-padding: 3px 0 0 0;
+}
+
+.info-label {
+    font-size: 11pt;
+    text-fill: #666666;
+    font-style: italic;
+    
+    -fx-font-size: 11pt;
+    -fx-text-fill: #666666;
+    -fx-font-style: italic;
+}
+
+.help-icon {
+    fill: #0066CC;
+    font-size: 14pt;
+    cursor: hand;
+    
+    -fx-fill: #0066CC;
+    -fx-font-size: 14pt;
+    -fx-cursor: hand;
+}
+
+.help-icon:hover {
+    fill: #0055AA;
+    
+    -fx-fill: #0055AA;
+}
+
+/* Other UI Element Styles */
+.separator {
+    opacity: 0.3;
+    
+    -fx-opacity: 0.3;
+}
+
+/* Menu Styles */
+.menu-bar {
+    background-color: #F0F0F0;
+    border-color: #DDDDDD;
+    border-width: 0 0 1px 0;
+    
+    -fx-background-color: #F0F0F0;
+    -fx-border-color: #DDDDDD;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.menu-bar .menu .label {
+    text-fill: #333333;
+    
+    -fx-text-fill: #333333;
+}
+
+.menu-bar .menu:hover {
+    background-color: #E0E0E0;
+    
+    -fx-background-color: #E0E0E0;
+}
+
+.menu-bar .menu-item:hover {
+    background-color: #0066CC;
+    text-fill: white;
+    
+    -fx-background-color: #0066CC;
+    -fx-text-fill: white;
+}
+
+/* Specific Element Styles */
+.currency-value {
+    font-weight: bold;
+    text-fill: #1A365D;
+    
+    -fx-font-weight: bold;
+    -fx-text-fill: #1A365D;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 800px) {
+    .root {
+        font-size: 11pt;
+        -fx-font-size: 11pt;
+    }
+    
+    .title {
+        font-size: 14pt;
+        -fx-font-size: 14pt;
+    }
+    
+    .section-title {
+        font-size: 12pt;
+        -fx-font-size: 12pt;
+    }
+    
+    .content-container {
+        padding: 15px;
+        -fx-padding: 15px;
+    }
+    
+    .field-label {
+        min-width: 120px;
+        -fx-min-width: 120px;
+    }
+    
+    .text-field {
+        min-width: 150px;
+        -fx-min-width: 150px;
+    }
+    
+    .button {
+        padding: 8px 15px;
+        -fx-padding: 8px 15px;
+        min-width: 100px;
+        -fx-min-width: 100px;
+    }
+}
