@@ -1,0 +1,102 @@
+/*
+ * input-section.css
+ * Specific styling for the input section of the Compound Interest Calculator
+ * Provides styles for input fields, labels, validation errors, and help icons
+ * JavaFX CSS version: 11
+ */
+
+/* Input Section Styling */
+.input-section {
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    border-color: #DDDDDD;
+    border-width: 1px;
+    border-style: solid;
+    margin-bottom: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);
+}
+
+.input-section .section-title {
+    font-size: 14pt;
+    font-weight: bold;
+    text-fill: #1A365D;
+    padding-bottom: 15px;
+}
+
+.field-container {
+    spacing: 5px;
+    padding-bottom: 10px;
+}
+
+.field-row {
+    alignment: CENTER_LEFT;
+    spacing: 10px;
+}
+
+.field-label {
+    min-width: 150px;
+    font-weight: normal;
+    text-fill: #333333;
+}
+
+.currency-field {
+    min-width: 200px;
+    font-size: 12pt;
+    padding: 8px;
+    -fx-background-color: white;
+    -fx-border-color: #CCCCCC;
+    -fx-border-radius: 3px;
+}
+
+.duration-field {
+    min-width: 200px;
+    font-size: 12pt;
+    padding: 8px;
+    -fx-background-color: white;
+    -fx-border-color: #CCCCCC;
+    -fx-border-radius: 3px;
+}
+
+.currency-field:focused, .duration-field:focused {
+    -fx-border-color: #0066CC;
+    -fx-effect: dropshadow(gaussian, rgba(0, 102, 204, 0.3), 3, 0, 0, 0);
+}
+
+.error-label {
+    font-size: 11pt;
+    text-fill: #CC0000;
+    font-style: italic;
+    padding: 3px 0 0 0;
+    opacity: 0.9;
+}
+
+.help-icon {
+    fill: #0066CC;
+    font-size: 14pt;
+    cursor: hand;
+}
+
+.help-icon:hover {
+    fill: #0055AA;
+}
+
+.invalid-input {
+    -fx-border-color: #CC0000;
+    -fx-background-color: #FFEEEE;
+}
+
+/* Responsive styles for smaller screens */
+@media screen and (max-width: 800px) {
+    .field-label {
+        min-width: 120px;
+    }
+    
+    .currency-field, .duration-field {
+        min-width: 150px;
+    }
+    
+    .field-row {
+        spacing: 5px;
+    }
+}
