@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Compound Interest Calculator - Regression Tests" verbose="true" parallel="false">
+    <!-- Include unit and integration test suites -->
+    <suite-files>
+        <suite-file path="unit-tests.xml"/>
+        <suite-file path="integration-tests.xml"/>
+    </suite-files>
+    
+    <!-- Define specific regression tests -->
+    <test name="Regression Tests Suite" preserve-order="true">
+        <classes>
+            <!-- Critical Unit Tests -->
+            <class name="com.bank.calculator.test.unit.service.CalculationServiceTest"/>
+            <class name="com.bank.calculator.test.unit.service.ValidationServiceTest"/>
+            <class name="com.bank.calculator.test.unit.controller.CalculatorControllerTest"/>
+            
+            <!-- Critical Integration Tests -->
+            <class name="com.bank.calculator.test.integration.controller.ControllerServiceIntegrationTest"/>
+            <class name="com.bank.calculator.test.integration.service.CalculationValidationIntegrationTest"/>
+            <class name="com.bank.calculator.test.integration.end2end.FullApplicationWorkflowTest"/>
+        </classes>
+        
+        <!-- Include only tests tagged as regression or critical -->
+        <groups>
+            <run>
+                <include name="regression"/>
+                <include name="critical"/>
+            </run>
+        </groups>
+    </test>
+    
+    <!-- Configure test listeners -->
+    <listeners>
+        <listener class-name="com.bank.calculator.test.util.TestReportListener"/>
+        <listener class-name="com.bank.calculator.test.util.CoverageListener"/>
+    </listeners>
+    
+    <!-- Test parameters -->
+    <parameter name="generate-regression-report" value="true"/>
+    <parameter name="report-output-directory" value="target/regression-test-reports"/>
+</suite>
