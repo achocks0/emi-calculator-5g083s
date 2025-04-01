@@ -1,0 +1,214 @@
+# .github/workflows/release.yml
+name: Release Compound Interest Calculator
+
+# Trigger the workflow on workflow_dispatch (manual trigger) and release creation
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v1.0.0)'
+        required: true
+  release:
+    types: [published]
+
+env:
+  JAVA_VERSION: 11
+  JAVA_PACKAGE_VERSION: 14
+  MAVEN_CLI_OPTS: '--batch-mode --errors --fail-at-end --show-version'
+  RELEASE_VERSION: ${{ github.event.inputs.version || github.event.release.tag_name }}
+
+permissions:
+  contents: write
+  packages: write
+  releases: write
+
+jobs:
+  prepare-release:
+    name: Prepare Release
+    runs-on: ubuntu-latest
+    outputs:
+      release_version: ${{ steps.extract_version.outputs.RELEASE_VERSION }}
+    steps:
+      # Checkout repository code
+      - name: Checkout repository code
+        uses: actions/checkout@v3 # actions/checkout v3
+
+      # Set up Java 11 environment
+      - name: Set up Java 11 environment
+        uses: actions/setup-java@v3 # actions/setup-java v3
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      # Download build artifacts from build workflow
+      - name: Download build artifacts from build workflow
+        uses: actions/download-artifact@v3 # actions/download-artifact v3
+        with:
+          name: jar-files
+          path: release/app
+
+      # Download test reports from test workflow
+      - name: Download test reports from test workflow
+        uses: actions/download-artifact@v3 # actions/download-artifact v3
+        with:
+          name: consolidated-test-report
+          path: release/test-reports
+
+      # Extract application version from common.properties
+      - name: Extract application version
+        id: extract_version
+        run: |
+          echo "RELEASE_VERSION=${{ env.RELEASE_VERSION }}" >> $GITHUB_OUTPUT
+          echo "Extracted release version: ${{ env.RELEASE_VERSION }}"
+
+      # Create release directory structure
+      - name: Create release directory structure
+        run: |
+          mkdir -p release/installers
+          mkdir -p release/documentation
+
+      # Set up release metadata (version, release notes)
+      - name: Set up release metadata
+        run: |
+          echo "Release version: ${{ env.RELEASE_VERSION }}"
+          echo "Setting up release metadata..."
+
+  build-installers:
+    name: Build Installers
+    needs: prepare-release
+    runs-on: ubuntu-latest
+    steps:
+      # Check out repository code
+      - name: Checkout repository code
+        uses: actions/checkout@v3 # actions/checkout v3
+
+      # Set up Java 14 environment (required for JPackage)
+      - name: Set up Java 14 environment (required for JPackage)
+        uses: actions/setup-java@v3 # actions/setup-java v3
+        with:
+          java-version: ${{ env.JAVA_PACKAGE_VERSION }}
+          distribution: 'temurin'
+
+      # Install platform-specific dependencies for cross-platform builds
+      - name: Install platform-specific dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rpm
+
+      # Run build-installers.sh script to create installers for all platforms
+      - name: Run build-installers.sh script
+        run: |
+          chmod +x infrastructure/scripts/build-installers.sh
+          infrastructure/scripts/build-installers.sh
+
+      # Run verify-installers.sh script to verify installer integrity
+      - name: Run verify-installers.sh script
+        run: |
+          chmod +x infrastructure/scripts/verify-installers.sh
+          infrastructure/scripts/verify-installers.sh
+
+      # Upload installers as artifacts for the next job
+      - name: Upload installers as artifacts
+        uses: actions/upload-artifact@v3 # actions/upload-artifact v3
+        with:
+          name: release-artifacts
+          path: infrastructure/installer
+          retention-days: 7
+
+  create-release-package:
+    name: Create Release Package
+    needs: build-installers
+    runs-on: ubuntu-latest
+    steps:
+      # Download installer artifacts from previous job
+      - name: Download installer artifacts from previous job
+        uses: actions/download-artifact@v3 # actions/download-artifact v3
+        with:
+          name: release-artifacts
+          path: release/installers
+
+      # Create release package directory structure
+      - name: Create release package directory structure
+        run: |
+          mkdir -p release/package
+          mkdir -p release/package/installers
+          mkdir -p release/package/documentation
+
+      # Copy installers to release package
+      - name: Copy installers to release package
+        run: |
+          cp -r release/installers/* release/package/installers/
+
+      # Copy documentation to release package
+      - name: Copy documentation to release package
+        run: |
+          # Add documentation copying steps here
+          echo "Copying documentation..."
+
+      # Create README with installation instructions
+      - name: Create README with installation instructions
+        run: |
+          echo "# Installation Instructions" > release/package/README.md
+          echo "Detailed installation instructions will be added here." >> release/package/README.md
+
+      # Create release notes from git commit history
+      - name: Create release notes from git commit history
+        run: |
+          echo "# Release Notes" > release/package/RELEASE_NOTES.md
+          echo "Release notes for version ${{ env.RELEASE_VERSION }} will be added here." >> release/package/RELEASE_NOTES.md
+
+      # Create ZIP archive of complete release package
+      - name: Create ZIP archive of complete release package
+        run: |
+          cd release
+          zip -r package.zip package
+
+      # Upload release package as artifact
+      - name: Upload release package as artifact
+        uses: actions/upload-artifact@v3 # actions/upload-artifact v3
+        with:
+          name: release-package
+          path: release/package.zip
+          retention-days: 7
+
+  publish-release:
+    name: Publish Release
+    needs: create-release-package
+    runs-on: ubuntu-latest
+    steps:
+      # Download release package artifact
+      - name: Download release package artifact
+        uses: actions/download-artifact@v3 # actions/download-artifact v3
+        with:
+          name: release-package
+          path: release
+
+      # Extract release metadata (version, notes)
+      - name: Extract release metadata
+        id: extract-metadata
+        run: |
+          echo "RELEASE_VERSION=${{ env.RELEASE_VERSION }}" >> $GITHUB_OUTPUT
+          echo "Extracting release metadata..."
+
+      # Create GitHub Release using softprops/action-gh-release
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1 # softprops/action-gh-release v1
+        with:
+          tag_name: ${{ env.RELEASE_VERSION }}
+          name: Release ${{ env.RELEASE_VERSION }}
+          body_path: release/package/RELEASE_NOTES.md
+          draft: false
+          prerelease: false
+          files: |
+            release/package/installers/*
+            release/package.zip
+
+      # Generate release announcement
+      - name: Generate release announcement
+        run: |
+          echo "Generating release announcement..."
+
+      # Update release documentation
+      - name: Update release documentation
+        run: |
+          echo "Updating release documentation..."
