@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- JUnit 5 platform - version 1.8.2 -->
+<suite name="Compound Interest Calculator - Security Tests" verbose="true">
+    <test name="Security Tests Suite" preserve-order="true">
+        <packages>
+            <package name="com.bank.calculator.test.security.*"/>
+        </packages>
+        <classes>
+            <class name="com.bank.calculator.test.security.InputValidationSecurityTest"/>
+            <class name="com.bank.calculator.test.security.ExceptionHandlingSecurityTest"/>
+            <class name="com.bank.calculator.test.security.ResourceUtilizationTest"/>
+        </classes>
+        <groups>
+            <run>
+                <include name="security"/>
+            </run>
+        </groups>
+    </test>
+    <listeners>
+        <listener class-name="com.bank.calculator.test.util.TestReportListener"/>
+        <listener class-name="com.bank.calculator.test.util.CoverageListener"/>
+    </listeners>
+</suite>
