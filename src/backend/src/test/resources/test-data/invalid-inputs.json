@@ -1,0 +1,222 @@
+[
+  {
+    "description": "Null principal amount",
+    "input": {
+      "principal": null,
+      "durationYears": "5"
+    },
+    "expected_error": {
+      "field": "principal",
+      "message": "Principal amount is required."
+    }
+  },
+  {
+    "description": "Empty principal amount",
+    "input": {
+      "principal": "",
+      "durationYears": "5"
+    },
+    "expected_error": {
+      "field": "principal",
+      "message": "Principal amount is required."
+    }
+  },
+  {
+    "description": "Non-numeric principal amount",
+    "input": {
+      "principal": "abc",
+      "durationYears": "5"
+    },
+    "expected_error": {
+      "field": "principal",
+      "message": "Principal amount must be a number with up to 2 decimal places."
+    }
+  },
+  {
+    "description": "Negative principal amount",
+    "input": {
+      "principal": "-1000.00",
+      "durationYears": "5"
+    },
+    "expected_error": {
+      "field": "principal",
+      "message": "Principal amount must be a positive number."
+    }
+  },
+  {
+    "description": "Zero principal amount",
+    "input": {
+      "principal": "0.00",
+      "durationYears": "5"
+    },
+    "expected_error": {
+      "field": "principal",
+      "message": "Principal amount must be a positive number."
+    }
+  },
+  {
+    "description": "Principal amount below minimum",
+    "input": {
+      "principal": "500.00",
+      "durationYears": "5"
+    },
+    "expected_error": {
+      "field": "principal",
+      "message": "Principal amount must be at least $1,000.00."
+    }
+  },
+  {
+    "description": "Principal amount above maximum",
+    "input": {
+      "principal": "2000000.00",
+      "durationYears": "5"
+    },
+    "expected_error": {
+      "field": "principal",
+      "message": "Principal amount cannot exceed $1,000,000.00."
+    }
+  },
+  {
+    "description": "Principal amount with too many decimal places",
+    "input": {
+      "principal": "1000.123",
+      "durationYears": "5"
+    },
+    "expected_error": {
+      "field": "principal",
+      "message": "Principal amount must be a number with up to 2 decimal places."
+    }
+  },
+  {
+    "description": "Principal amount with invalid format (comma)",
+    "input": {
+      "principal": "1,000.00",
+      "durationYears": "5"
+    },
+    "expected_error": {
+      "field": "principal",
+      "message": "Principal amount must be a number with up to 2 decimal places."
+    }
+  },
+  {
+    "description": "Null loan duration",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": null
+    },
+    "expected_error": {
+      "field": "durationYears",
+      "message": "Loan duration is required."
+    }
+  },
+  {
+    "description": "Empty loan duration",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": ""
+    },
+    "expected_error": {
+      "field": "durationYears",
+      "message": "Loan duration is required."
+    }
+  },
+  {
+    "description": "Non-numeric loan duration",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": "abc"
+    },
+    "expected_error": {
+      "field": "durationYears",
+      "message": "Loan duration must be a whole number."
+    }
+  },
+  {
+    "description": "Negative loan duration",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": "-5"
+    },
+    "expected_error": {
+      "field": "durationYears",
+      "message": "Loan duration must be a positive whole number."
+    }
+  },
+  {
+    "description": "Zero loan duration",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": "0"
+    },
+    "expected_error": {
+      "field": "durationYears",
+      "message": "Loan duration must be a positive whole number."
+    }
+  },
+  {
+    "description": "Loan duration below minimum",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": "0.5"
+    },
+    "expected_error": {
+      "field": "durationYears",
+      "message": "Loan duration must be a whole number."
+    }
+  },
+  {
+    "description": "Loan duration above maximum",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": "35"
+    },
+    "expected_error": {
+      "field": "durationYears",
+      "message": "Loan duration cannot exceed 30 years."
+    }
+  },
+  {
+    "description": "Loan duration with decimal places",
+    "input": {
+      "principal": "10000.00",
+      "durationYears": "5.5"
+    },
+    "expected_error": {
+      "field": "durationYears",
+      "message": "Loan duration must be a whole number."
+    }
+  },
+  {
+    "description": "Both principal and duration invalid",
+    "input": {
+      "principal": "-1000.00",
+      "durationYears": "-5"
+    },
+    "expected_error": {
+      "field": "principal",
+      "message": "Principal amount must be a positive number."
+    }
+  },
+  {
+    "description": "Both principal and duration missing",
+    "input": {
+      "principal": "",
+      "durationYears": ""
+    },
+    "expected_error": {
+      "field": "principal",
+      "message": "Principal amount is required."
+    }
+  },
+  {
+    "description": "Principal with currency symbol",
+    "input": {
+      "principal": "$10000.00",
+      "durationYears": "5"
+    },
+    "expected_error": {
+      "field": "principal",
+      "message": "Principal amount must be a number with up to 2 decimal places."
+    }
+  }
+]
