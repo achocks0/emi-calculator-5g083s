@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Compound Interest Calculator - Integration Tests" verbose="true">
+    <test name="Integration Tests Suite" preserve-order="true">
+        <packages>
+            <package name="com.bank.calculator.test.integration.*"/>
+        </packages>
+        <classes>
+            <class name="com.bank.calculator.test.integration.controller.ControllerServiceIntegrationTest"/>
+            <class name="com.bank.calculator.test.integration.service.CalculationValidationIntegrationTest"/>
+            <class name="com.bank.calculator.test.integration.end2end.FullApplicationWorkflowTest"/>
+            <class name="com.bank.calculator.test.integration.ui.UIControllerIntegrationTest"/>
+        </classes>
+        <groups>
+            <run>
+                <include name="integration"/>
+            </run>
+        </groups>
+    </test>
+    <listeners>
+        <listener class-name="com.bank.calculator.test.util.TestReportListener"/>
+        <listener class-name="com.bank.calculator.test.util.CoverageListener"/>
+        <listener class-name="com.bank.calculator.test.util.PerformanceTestListener"/>
+    </listeners>
+    <parameter name="generate-integration-report" value="true"/>
+    <parameter name="report-output-directory" value="target/integration-test-reports"/>
+</suite>
