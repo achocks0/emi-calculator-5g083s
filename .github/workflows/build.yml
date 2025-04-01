@@ -1,0 +1,70 @@
+name: Build Compound Interest Calculator
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  JAVA_VERSION: 11
+  MAVEN_CLI_OPTS: '--batch-mode --errors --fail-at-end --show-version'
+
+jobs:
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v3
+      
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      
+      - name: Build with Maven
+        working-directory: src/backend
+        run: mvn ${{ env.MAVEN_CLI_OPTS }} clean compile
+      
+      - name: Run tests
+        working-directory: src/backend
+        run: mvn ${{ env.MAVEN_CLI_OPTS }} test
+      
+      - name: Package application
+        working-directory: src/backend
+        run: mvn ${{ env.MAVEN_CLI_OPTS }} package -DskipTests
+      
+      - name: Generate code coverage report
+        working-directory: src/backend
+        run: mvn ${{ env.MAVEN_CLI_OPTS }} jacoco:report
+      
+      - name: Upload JAR artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: jar-files
+          path: |
+            src/backend/target/*.jar
+          retention-days: 7
+      
+      - name: Upload build logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-logs
+          path: |
+            src/backend/target/surefire-reports/
+            src/backend/target/site/jacoco/
+          retention-days: 3
