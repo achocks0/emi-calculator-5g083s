@@ -1,0 +1,45 @@
+{
+  "description": "Performance thresholds for the Compound Interest Calculator application",
+  "version": "1.0",
+  "thresholds": {
+    "calculation_performance": {
+      "standard_calculation_ms": 200,
+      "large_value_calculation_ms": 200,
+      "long_duration_calculation_ms": 200,
+      "compound_interest_calculation_ms": 100,
+      "multiple_consecutive_calculations_ms": 200,
+      "average_calculation_time_ms": 150
+    },
+    "ui_responsiveness": {
+      "input_field_response_ms": 100,
+      "button_click_response_ms": 100,
+      "result_display_update_ms": 100,
+      "error_message_display_ms": 100,
+      "complete_workflow_ms": 300,
+      "average_ui_response_time_ms": 80
+    },
+    "memory_usage": {
+      "baseline_memory_mb": 50,
+      "standard_calculation_memory_mb": 50,
+      "large_value_calculation_memory_mb": 50,
+      "multiple_calculations_memory_mb": 50,
+      "peak_memory_usage_mb": 100,
+      "memory_leak_threshold_percentage": 10
+    },
+    "startup_time": {
+      "application_startup_ms": 3000,
+      "ui_initialization_ms": 1000,
+      "average_startup_time_ms": 2500
+    }
+  },
+  "environment_factors": {
+    "ci_environment_factor": 1.5,
+    "development_environment_factor": 1.2,
+    "test_environment_factor": 1.0
+  },
+  "test_configuration": {
+    "default_iterations": 20,
+    "default_warmup_iterations": 5,
+    "logging_level": "INFO"
+  }
+}
