@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Compound Interest Calculator - Performance Tests" verbose="true">
+  <test name="Performance Tests Suite" preserve-order="true">
+    <packages>
+      <package name="com.bank.calculator.test.performance"/>
+    </packages>
+    <classes>
+      <class name="com.bank.calculator.test.performance.CalculationPerformanceTest"/>
+      <class name="com.bank.calculator.test.performance.MemoryUsageTest"/>
+      <class name="com.bank.calculator.test.performance.StartupTimeTest"/>
+      <class name="com.bank.calculator.test.performance.UIResponsivenessTest"/>
+    </classes>
+    <groups>
+      <run>
+        <include name="performance"/>
+      </run>
+    </groups>
+  </test>
+  <listeners>
+    <listener class-name="com.bank.calculator.test.util.TestReportListener"/>
+    <listener class-name="com.bank.calculator.test.util.PerformanceMetricsListener"/>
+  </listeners>
+  <parameter name="performance-thresholds-file" value="test-data/performance-thresholds.json"/>
+</suite>
