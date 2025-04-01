@@ -1,0 +1,286 @@
+{
+  "description": "Test cases for compound interest and EMI calculations in the Compound Interest Calculator application",
+  "version": "1.0",
+  "test_cases": [
+    {
+      "id": "standard-1",
+      "name": "Standard calculation with $10,000 principal for 5 years",
+      "category": "Standard",
+      "description": "Standard EMI calculation with typical values from technical specification",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "200.38",
+        "total_amount": "12022.80",
+        "interest_amount": "2022.80",
+        "number_of_installments": 60
+      }
+    },
+    {
+      "id": "standard-2",
+      "name": "Standard calculation with $25,000 principal for 3 years",
+      "category": "Standard",
+      "description": "Standard EMI calculation with typical values from technical specification",
+      "input": {
+        "principal": "25000.00",
+        "duration_years": 3,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "777.23",
+        "total_amount": "27980.28",
+        "interest_amount": "2980.28",
+        "number_of_installments": 36
+      }
+    },
+    {
+      "id": "standard-3",
+      "name": "Standard calculation with $5,000 principal for 2 years",
+      "category": "Standard",
+      "description": "Standard EMI calculation with smaller principal and shorter duration",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": 2,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "224.44",
+        "total_amount": "5386.56",
+        "interest_amount": "386.56",
+        "number_of_installments": 24
+      }
+    },
+    {
+      "id": "standard-4",
+      "name": "Standard calculation with $50,000 principal for 10 years",
+      "category": "Standard",
+      "description": "Standard EMI calculation with larger principal and longer duration",
+      "input": {
+        "principal": "50000.00",
+        "duration_years": 10,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "594.53",
+        "total_amount": "71343.60",
+        "interest_amount": "21343.60",
+        "number_of_installments": 120
+      }
+    },
+    {
+      "id": "edge-case-1",
+      "name": "Zero interest rate calculation",
+      "category": "Edge Case",
+      "description": "EMI calculation with zero interest rate should return principal divided by months",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 5,
+        "interest_rate": "0.0"
+      },
+      "expected_results": {
+        "emi_amount": "166.67",
+        "total_amount": "10000.20",
+        "interest_amount": "0.20",
+        "number_of_installments": 60
+      }
+    },
+    {
+      "id": "edge-case-2",
+      "name": "Minimum principal amount",
+      "category": "Edge Case",
+      "description": "EMI calculation with minimum allowed principal amount",
+      "input": {
+        "principal": "1000.00",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "20.04",
+        "total_amount": "1202.40",
+        "interest_amount": "202.40",
+        "number_of_installments": 60
+      }
+    },
+    {
+      "id": "edge-case-3",
+      "name": "Minimum loan duration",
+      "category": "Edge Case",
+      "description": "EMI calculation with minimum allowed loan duration",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 1,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "865.27",
+        "total_amount": "10383.24",
+        "interest_amount": "383.24",
+        "number_of_installments": 12
+      }
+    },
+    {
+      "id": "boundary-1",
+      "name": "Principal just above minimum",
+      "category": "Boundary",
+      "description": "EMI calculation with principal amount just above the minimum allowed value",
+      "input": {
+        "principal": "1000.01",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "20.04",
+        "total_amount": "1202.40",
+        "interest_amount": "202.39",
+        "number_of_installments": 60
+      }
+    },
+    {
+      "id": "boundary-2",
+      "name": "Principal just below maximum",
+      "category": "Boundary",
+      "description": "EMI calculation with principal amount just below the maximum allowed value",
+      "input": {
+        "principal": "999999.99",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "20037.79",
+        "total_amount": "1202267.40",
+        "interest_amount": "202267.41",
+        "number_of_installments": 60
+      }
+    },
+    {
+      "id": "boundary-3",
+      "name": "Duration just above minimum",
+      "category": "Boundary",
+      "description": "EMI calculation with loan duration just above the minimum allowed value",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 1,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "865.27",
+        "total_amount": "10383.24",
+        "interest_amount": "383.24",
+        "number_of_installments": 12
+      }
+    },
+    {
+      "id": "boundary-4",
+      "name": "Duration just below maximum",
+      "category": "Boundary",
+      "description": "EMI calculation with loan duration just below the maximum allowed value",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 29,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "73.38",
+        "total_amount": "25532.16",
+        "interest_amount": "15532.16",
+        "number_of_installments": 348
+      }
+    },
+    {
+      "id": "large-value-1",
+      "name": "Maximum principal amount",
+      "category": "Edge Case",
+      "description": "EMI calculation with maximum allowed principal amount",
+      "input": {
+        "principal": "1000000.00",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "20037.80",
+        "total_amount": "1202268.00",
+        "interest_amount": "202268.00",
+        "number_of_installments": 60
+      }
+    },
+    {
+      "id": "large-value-2",
+      "name": "Maximum loan duration",
+      "category": "Edge Case",
+      "description": "EMI calculation with maximum allowed loan duration",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 30,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "70.68",
+        "total_amount": "25444.80",
+        "interest_amount": "15444.80",
+        "number_of_installments": 360
+      }
+    },
+    {
+      "id": "large-value-3",
+      "name": "Large principal with long duration",
+      "category": "Edge Case",
+      "description": "EMI calculation with large principal amount and long loan duration",
+      "input": {
+        "principal": "1000000.00",
+        "duration_years": 30,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "7067.75",
+        "total_amount": "2544390.00",
+        "interest_amount": "1544390.00",
+        "number_of_installments": 360
+      }
+    },
+    {
+      "id": "performance-1",
+      "name": "Standard calculation performance test",
+      "category": "Performance",
+      "description": "Performance test for standard EMI calculation",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": 5,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "200.38",
+        "total_amount": "12022.80",
+        "interest_amount": "2022.80",
+        "number_of_installments": 60
+      },
+      "performance_criteria": {
+        "max_execution_time_ms": 50,
+        "iterations": 1000
+      }
+    },
+    {
+      "id": "performance-2",
+      "name": "Large value calculation performance test",
+      "category": "Performance",
+      "description": "Performance test for EMI calculation with large values",
+      "input": {
+        "principal": "1000000.00",
+        "duration_years": 30,
+        "interest_rate": "7.5"
+      },
+      "expected_results": {
+        "emi_amount": "7067.75",
+        "total_amount": "2544390.00",
+        "interest_amount": "1544390.00",
+        "number_of_installments": 360
+      },
+      "performance_criteria": {
+        "max_execution_time_ms": 100,
+        "iterations": 500
+      }
+    }
+  ]
+}
