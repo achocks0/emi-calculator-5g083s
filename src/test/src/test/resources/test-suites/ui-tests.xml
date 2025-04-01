@@ -1,0 +1,29 @@
+<suite name="Compound Interest Calculator - UI Tests" verbose="true" parallel="false">
+    <test name="UI Component Tests" preserve-order="true">
+        <classes>
+            <class name="com.bank.calculator.test.ui.component.InputSectionTest"/>
+            <class name="com.bank.calculator.test.ui.component.ResultSectionTest"/>
+            <class name="com.bank.calculator.test.ui.component.ActionSectionTest"/>
+            <class name="com.bank.calculator.test.ui.dialog.HelpDialogTest"/>
+        </classes>
+    </test>
+    <test name="UI Integration Tests" preserve-order="true">
+        <classes>
+            <class name="com.bank.calculator.test.ui.CalculatorUITest"/>
+            <class name="com.bank.calculator.test.ui.responsive.ResponsiveLayoutTest"/>
+        </classes>
+    </test>
+    <test name="UI Accessibility Tests" preserve-order="true">
+        <classes>
+            <class name="com.bank.calculator.test.ui.accessibility.KeyboardNavigationTest"/>
+            <class name="com.bank.calculator.test.ui.accessibility.ScreenReaderCompatibilityTest"/>
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="com.bank.calculator.test.util.TestReportListener"/>
+        <listener class-name="com.bank.calculator.test.util.UITestListener"/>
+    </listeners>
+    <parameter name="headless" value="true"/>
+    <parameter name="ui-test-timeout-ms" value="30000"/>
+    <parameter name="report-output-directory" value="target/test-reports/ui-tests"/>
+</suite>
