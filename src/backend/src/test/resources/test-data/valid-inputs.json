@@ -1,0 +1,122 @@
+[
+  {
+    "description": "Standard loan scenario with medium principal and medium duration",
+    "principal": "10000.00",
+    "durationYears": "5",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Small loan scenario with short duration",
+    "principal": "1000.00",
+    "durationYears": "1",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Large loan scenario with long duration",
+    "principal": "100000.00",
+    "durationYears": "30",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Minimum valid principal amount",
+    "principal": "1000.00",
+    "durationYears": "1",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Maximum valid principal amount",
+    "principal": "1000000.00",
+    "durationYears": "30",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Minimum valid loan duration",
+    "principal": "5000.00",
+    "durationYears": "1",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Maximum valid loan duration",
+    "principal": "5000.00",
+    "durationYears": "30",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Principal with decimal places",
+    "principal": "5250.75",
+    "durationYears": "5",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Medium loan with medium duration",
+    "principal": "25000.00",
+    "durationYears": "5",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Medium loan with long duration",
+    "principal": "25000.00",
+    "durationYears": "15",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Zero interest rate scenario",
+    "principal": "10000.00",
+    "durationYears": "5",
+    "interestRate": "0.0"
+  },
+  {
+    "description": "Low interest rate scenario",
+    "principal": "10000.00",
+    "durationYears": "5",
+    "interestRate": "0.03"
+  },
+  {
+    "description": "High interest rate scenario",
+    "principal": "10000.00",
+    "durationYears": "5",
+    "interestRate": "0.12"
+  },
+  {
+    "description": "Very short loan duration",
+    "principal": "5000.00",
+    "durationYears": "1",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Very long loan duration",
+    "principal": "5000.00",
+    "durationYears": "30",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Principal at boundary value (minimum)",
+    "principal": "1000.00",
+    "durationYears": "5",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Principal at boundary value (maximum)",
+    "principal": "1000000.00",
+    "durationYears": "5",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Duration at boundary value (minimum)",
+    "principal": "10000.00",
+    "durationYears": "1",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Duration at boundary value (maximum)",
+    "principal": "10000.00",
+    "durationYears": "30",
+    "interestRate": "0.075"
+  },
+  {
+    "description": "Typical home loan scenario",
+    "principal": "250000.00",
+    "durationYears": "25",
+    "interestRate": "0.075"
+  }
+]
