@@ -1,0 +1,388 @@
+{
+  "description": "Test cases for UI testing of the Compound Interest Calculator application",
+  "version": "1.0",
+  "test_cases": [
+    {
+      "id": "ui-standard-1",
+      "name": "Standard calculation UI test with $10,000 principal for 5 years",
+      "category": "Standard",
+      "description": "Verify that entering standard values produces correct EMI result in UI",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": "5"
+      },
+      "expected_results": {
+        "result_contains": "$483.65",
+        "error_messages": [],
+        "field_highlighting": []
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "10000.00"},
+        {"action": "enterText", "target": "#durationField", "value": "5"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyVisible", "target": "#resultLabel"},
+        {"action": "verifyText", "target": "#resultLabel", "contains": "$483.65"}
+      ]
+    },
+    {
+      "id": "ui-standard-2",
+      "name": "Standard calculation UI test with $25,000 principal for 3 years",
+      "category": "Standard",
+      "description": "Verify that entering standard values produces correct EMI result in UI",
+      "input": {
+        "principal": "25000.00",
+        "duration_years": "3"
+      },
+      "expected_results": {
+        "result_contains": "$777.23",
+        "error_messages": [],
+        "field_highlighting": []
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "25000.00"},
+        {"action": "enterText", "target": "#durationField", "value": "3"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyVisible", "target": "#resultLabel"},
+        {"action": "verifyText", "target": "#resultLabel", "contains": "$777.23"}
+      ]
+    },
+    {
+      "id": "ui-standard-3",
+      "name": "Standard calculation UI test with $5,000 principal for 2 years",
+      "category": "Standard",
+      "description": "Verify that entering standard values produces correct EMI result in UI",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "2"
+      },
+      "expected_results": {
+        "result_contains": "$224.44",
+        "error_messages": [],
+        "field_highlighting": []
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "5000.00"},
+        {"action": "enterText", "target": "#durationField", "value": "2"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyVisible", "target": "#resultLabel"},
+        {"action": "verifyText", "target": "#resultLabel", "contains": "$224.44"}
+      ]
+    },
+    {
+      "id": "ui-invalid-principal-1",
+      "name": "Invalid principal amount - negative value",
+      "category": "Validation",
+      "description": "Verify that entering a negative principal amount displays appropriate error message",
+      "input": {
+        "principal": "-1000.00",
+        "duration_years": "5"
+      },
+      "expected_results": {
+        "result_contains": "",
+        "error_messages": ["Principal amount must be a positive number"],
+        "field_highlighting": ["#principalField"]
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "-1000.00"},
+        {"action": "enterText", "target": "#durationField", "value": "5"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyVisible", "target": "#principalErrorLabel"},
+        {"action": "verifyText", "target": "#principalErrorLabel", "contains": "Principal amount must be a positive number"},
+        {"action": "verifyNotVisible", "target": "#resultLabel"}
+      ]
+    },
+    {
+      "id": "ui-invalid-principal-2",
+      "name": "Invalid principal amount - zero value",
+      "category": "Validation",
+      "description": "Verify that entering a zero principal amount displays appropriate error message",
+      "input": {
+        "principal": "0.00",
+        "duration_years": "5"
+      },
+      "expected_results": {
+        "result_contains": "",
+        "error_messages": ["Principal amount must be a positive number"],
+        "field_highlighting": ["#principalField"]
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "0.00"},
+        {"action": "enterText", "target": "#durationField", "value": "5"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyVisible", "target": "#principalErrorLabel"},
+        {"action": "verifyText", "target": "#principalErrorLabel", "contains": "Principal amount must be a positive number"},
+        {"action": "verifyNotVisible", "target": "#resultLabel"}
+      ]
+    },
+    {
+      "id": "ui-invalid-principal-3",
+      "name": "Invalid principal amount - non-numeric value",
+      "category": "Validation",
+      "description": "Verify that entering a non-numeric principal amount displays appropriate error message",
+      "input": {
+        "principal": "abc",
+        "duration_years": "5"
+      },
+      "expected_results": {
+        "result_contains": "",
+        "error_messages": ["Principal amount must be a positive number"],
+        "field_highlighting": ["#principalField"]
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "abc"},
+        {"action": "enterText", "target": "#durationField", "value": "5"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyVisible", "target": "#principalErrorLabel"},
+        {"action": "verifyText", "target": "#principalErrorLabel", "contains": "Principal amount must be a positive number"},
+        {"action": "verifyNotVisible", "target": "#resultLabel"}
+      ]
+    },
+    {
+      "id": "ui-invalid-duration-1",
+      "name": "Invalid loan duration - negative value",
+      "category": "Validation",
+      "description": "Verify that entering a negative loan duration displays appropriate error message",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": "-5"
+      },
+      "expected_results": {
+        "result_contains": "",
+        "error_messages": ["Loan duration must be a positive whole number"],
+        "field_highlighting": ["#durationField"]
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "10000.00"},
+        {"action": "enterText", "target": "#durationField", "value": "-5"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyVisible", "target": "#durationErrorLabel"},
+        {"action": "verifyText", "target": "#durationErrorLabel", "contains": "Loan duration must be a positive whole number"},
+        {"action": "verifyNotVisible", "target": "#resultLabel"}
+      ]
+    },
+    {
+      "id": "ui-invalid-duration-2",
+      "name": "Invalid loan duration - zero value",
+      "category": "Validation",
+      "description": "Verify that entering a zero loan duration displays appropriate error message",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": "0"
+      },
+      "expected_results": {
+        "result_contains": "",
+        "error_messages": ["Loan duration must be a positive whole number"],
+        "field_highlighting": ["#durationField"]
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "10000.00"},
+        {"action": "enterText", "target": "#durationField", "value": "0"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyVisible", "target": "#durationErrorLabel"},
+        {"action": "verifyText", "target": "#durationErrorLabel", "contains": "Loan duration must be a positive whole number"},
+        {"action": "verifyNotVisible", "target": "#resultLabel"}
+      ]
+    },
+    {
+      "id": "ui-invalid-duration-3",
+      "name": "Invalid loan duration - non-integer value",
+      "category": "Validation",
+      "description": "Verify that entering a non-integer loan duration displays appropriate error message",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": "2.5"
+      },
+      "expected_results": {
+        "result_contains": "",
+        "error_messages": ["Loan duration must be a positive whole number"],
+        "field_highlighting": ["#durationField"]
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "10000.00"},
+        {"action": "enterText", "target": "#durationField", "value": "2.5"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyVisible", "target": "#durationErrorLabel"},
+        {"action": "verifyText", "target": "#durationErrorLabel", "contains": "Loan duration must be a positive whole number"},
+        {"action": "verifyNotVisible", "target": "#resultLabel"}
+      ]
+    },
+    {
+      "id": "ui-edge-case-1",
+      "name": "Edge case - large principal amount",
+      "category": "Edge Case",
+      "description": "Verify that entering a large principal amount produces correct EMI result in UI",
+      "input": {
+        "principal": "1000000.00",
+        "duration_years": "5"
+      },
+      "expected_results": {
+        "result_contains": "$20,037.80",
+        "error_messages": [],
+        "field_highlighting": []
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "1000000.00"},
+        {"action": "enterText", "target": "#durationField", "value": "5"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyVisible", "target": "#resultLabel"},
+        {"action": "verifyText", "target": "#resultLabel", "contains": "$20,037.80"}
+      ]
+    },
+    {
+      "id": "ui-edge-case-2",
+      "name": "Edge case - maximum loan duration",
+      "category": "Edge Case",
+      "description": "Verify that entering maximum loan duration produces correct EMI result in UI",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": "30"
+      },
+      "expected_results": {
+        "result_contains": "$70.68",
+        "error_messages": [],
+        "field_highlighting": []
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "10000.00"},
+        {"action": "enterText", "target": "#durationField", "value": "30"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyVisible", "target": "#resultLabel"},
+        {"action": "verifyText", "target": "#resultLabel", "contains": "$70.68"}
+      ]
+    },
+    {
+      "id": "ui-edge-case-3",
+      "name": "Edge case - minimum loan duration",
+      "category": "Edge Case",
+      "description": "Verify that entering minimum loan duration produces correct EMI result in UI",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": "1"
+      },
+      "expected_results": {
+        "result_contains": "$865.27",
+        "error_messages": [],
+        "field_highlighting": []
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "10000.00"},
+        {"action": "enterText", "target": "#durationField", "value": "1"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyVisible", "target": "#resultLabel"},
+        {"action": "verifyText", "target": "#resultLabel", "contains": "$865.27"}
+      ]
+    },
+    {
+      "id": "ui-workflow-1",
+      "name": "Complete workflow - calculation and new calculation",
+      "category": "Workflow",
+      "description": "Verify the complete workflow of performing a calculation and starting a new calculation",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": "5"
+      },
+      "expected_results": {
+        "result_contains": "$483.65",
+        "error_messages": [],
+        "field_highlighting": []
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "10000.00"},
+        {"action": "enterText", "target": "#durationField", "value": "5"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyVisible", "target": "#resultLabel"},
+        {"action": "verifyText", "target": "#resultLabel", "contains": "$483.65"},
+        {"action": "click", "target": "#newCalculationButton"},
+        {"action": "verifyText", "target": "#principalField", "contains": ""},
+        {"action": "verifyText", "target": "#durationField", "contains": ""},
+        {"action": "verifyNotVisible", "target": "#resultLabel"}
+      ]
+    },
+    {
+      "id": "ui-workflow-2",
+      "name": "Error correction workflow",
+      "category": "Workflow",
+      "description": "Verify that error messages are cleared when invalid inputs are corrected",
+      "input": {
+        "principal": "-1000.00",
+        "duration_years": "5",
+        "corrected_principal": "10000.00"
+      },
+      "expected_results": {
+        "result_contains": "$483.65",
+        "error_messages": ["Principal amount must be a positive number"],
+        "field_highlighting": ["#principalField"]
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "-1000.00"},
+        {"action": "enterText", "target": "#durationField", "value": "5"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyVisible", "target": "#principalErrorLabel"},
+        {"action": "verifyText", "target": "#principalErrorLabel", "contains": "Principal amount must be a positive number"},
+        {"action": "enterText", "target": "#principalField", "value": "10000.00"},
+        {"action": "click", "target": "#calculateButton"},
+        {"action": "verifyNotVisible", "target": "#principalErrorLabel"},
+        {"action": "verifyVisible", "target": "#resultLabel"},
+        {"action": "verifyText", "target": "#resultLabel", "contains": "$483.65"}
+      ]
+    },
+    {
+      "id": "ui-performance-1",
+      "name": "UI response time test - input fields",
+      "category": "Performance",
+      "description": "Verify that UI input fields respond within the required time",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": "5"
+      },
+      "expected_results": {
+        "max_response_time_ms": 100
+      },
+      "ui_actions": [
+        {"action": "measureResponseTime", "target": "#principalField", "operation": "enterText", "value": "10000.00"},
+        {"action": "measureResponseTime", "target": "#durationField", "operation": "enterText", "value": "5"}
+      ]
+    },
+    {
+      "id": "ui-performance-2",
+      "name": "UI response time test - calculation",
+      "category": "Performance",
+      "description": "Verify that calculation completes within the required time",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": "5"
+      },
+      "expected_results": {
+        "max_response_time_ms": 500
+      },
+      "ui_actions": [
+        {"action": "enterText", "target": "#principalField", "value": "10000.00"},
+        {"action": "enterText", "target": "#durationField", "value": "5"},
+        {"action": "measureResponseTime", "target": "#calculateButton", "operation": "click"}
+      ]
+    },
+    {
+      "id": "ui-accessibility-1",
+      "name": "Keyboard navigation test",
+      "category": "Accessibility",
+      "description": "Verify that the application can be navigated using keyboard",
+      "input": {
+        "principal": "10000.00",
+        "duration_years": "5"
+      },
+      "expected_results": {
+        "result_contains": "$483.65"
+      },
+      "ui_actions": [
+        {"action": "focusOn", "target": "#principalField"},
+        {"action": "enterText", "target": "#principalField", "value": "10000.00"},
+        {"action": "pressTab"},
+        {"action": "enterText", "target": "#durationField", "value": "5"},
+        {"action": "pressTab"},
+        {"action": "pressEnter"},
+        {"action": "verifyVisible", "target": "#resultLabel"},
+        {"action": "verifyText", "target": "#resultLabel", "contains": "$483.65"}
+      ]
+    }
+  ]
+}
