@@ -1,0 +1,81 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+logs/
+
+# Test reports and generated files
+test-output/
+test-reports/
+surefire-reports/
+failsafe-reports/
+jacoco-reports/
+coverage-reports/
+
+# Performance test results
+performance-results/
+jmh-results/
+benchmark-results/
+
+# UI test artifacts
+screenshots/
+recordings/
+ui-test-results/
+
+# Test data files
+generated-test-data/
+temp-test-data/
+
+# Test configuration files
+test-config.local.properties
+test-environment.local.properties
+
+# IDE-specific test files
+.idea/
+*.iws
+*.iml
+*.ipr
+.classpath
+.project
+.settings/
+
+# Temporary files
+tmp/
+temp/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Build tools
+.gradle/
+build/
+
+# Package files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Eclipse files
+bin/
+.metadata/
+
+# Maven specific
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
