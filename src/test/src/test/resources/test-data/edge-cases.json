@@ -1,0 +1,247 @@
+[
+  {
+    "id": "edge-zero-interest",
+    "name": "Zero Interest Rate",
+    "category": "Edge Case",
+    "description": "EMI calculation with zero interest rate should return principal divided by months",
+    "input": {
+      "principal": "10000.00",
+      "duration_years": 5,
+      "interest_rate": "0.0"
+    },
+    "expected_results": {
+      "emi_amount": "166.67",
+      "total_amount": "10000.20",
+      "interest_amount": "0.20",
+      "number_of_installments": 60
+    },
+    "expected_behavior": "Valid calculation with principal divided by months"
+  },
+  {
+    "id": "edge-minimum-principal",
+    "name": "Minimum Principal Amount",
+    "category": "Edge Case",
+    "description": "EMI calculation with minimum allowed principal amount (0.01)",
+    "input": {
+      "principal": "0.01",
+      "duration_years": 1,
+      "interest_rate": "7.5"
+    },
+    "expected_results": {
+      "emi_amount": "0.01",
+      "total_amount": "0.12",
+      "interest_amount": "0.11",
+      "number_of_installments": 12
+    },
+    "expected_behavior": "Valid calculation with very small amounts"
+  },
+  {
+    "id": "edge-maximum-principal",
+    "name": "Maximum Principal Amount",
+    "category": "Edge Case",
+    "description": "EMI calculation with maximum allowed principal amount (999999999.99)",
+    "input": {
+      "principal": "999999999.99",
+      "duration_years": 5,
+      "interest_rate": "7.5"
+    },
+    "expected_results": {
+      "emi_amount": "20037799.80",
+      "total_amount": "1202267988.00",
+      "interest_amount": "202267988.01",
+      "number_of_installments": 60
+    },
+    "expected_behavior": "Valid calculation with very large amounts"
+  },
+  {
+    "id": "edge-minimum-duration",
+    "name": "Minimum Loan Duration",
+    "category": "Edge Case",
+    "description": "EMI calculation with minimum allowed loan duration (1 month)",
+    "input": {
+      "principal": "10000.00",
+      "duration_years": 0.0833,
+      "interest_rate": "7.5"
+    },
+    "expected_results": {
+      "emi_amount": "10062.50",
+      "total_amount": "10062.50",
+      "interest_amount": "62.50",
+      "number_of_installments": 1
+    },
+    "expected_behavior": "Valid calculation with very short duration"
+  },
+  {
+    "id": "edge-maximum-duration",
+    "name": "Maximum Loan Duration",
+    "category": "Edge Case",
+    "description": "EMI calculation with maximum allowed loan duration (30 years)",
+    "input": {
+      "principal": "10000.00",
+      "duration_years": 30,
+      "interest_rate": "7.5"
+    },
+    "expected_results": {
+      "emi_amount": "70.68",
+      "total_amount": "25444.80",
+      "interest_amount": "15444.80",
+      "number_of_installments": 360
+    },
+    "expected_behavior": "Valid calculation with very long duration"
+  },
+  {
+    "id": "edge-very-high-interest",
+    "name": "Very High Interest Rate",
+    "category": "Edge Case",
+    "description": "EMI calculation with extremely high interest rate (99.99%)",
+    "input": {
+      "principal": "10000.00",
+      "duration_years": 5,
+      "interest_rate": "99.99"
+    },
+    "expected_results": {
+      "emi_amount": "833.33",
+      "total_amount": "50000.00",
+      "interest_amount": "40000.00",
+      "number_of_installments": 60
+    },
+    "expected_behavior": "Valid calculation with extremely high interest rate"
+  },
+  {
+    "id": "edge-very-low-interest",
+    "name": "Very Low Interest Rate",
+    "category": "Edge Case",
+    "description": "EMI calculation with extremely low interest rate (0.01%)",
+    "input": {
+      "principal": "10000.00",
+      "duration_years": 5,
+      "interest_rate": "0.01"
+    },
+    "expected_results": {
+      "emi_amount": "166.71",
+      "total_amount": "10002.60",
+      "interest_amount": "2.60",
+      "number_of_installments": 60
+    },
+    "expected_behavior": "Valid calculation with extremely low interest rate"
+  },
+  {
+    "id": "edge-fractional-duration",
+    "name": "Fractional Loan Duration",
+    "category": "Edge Case",
+    "description": "EMI calculation with fractional loan duration (2.5 years)",
+    "input": {
+      "principal": "10000.00",
+      "duration_years": 2.5,
+      "interest_rate": "7.5"
+    },
+    "expected_results": {
+      "emi_amount": "386.66",
+      "total_amount": "11599.80",
+      "interest_amount": "1599.80",
+      "number_of_installments": 30
+    },
+    "expected_behavior": "Valid calculation with fractional duration in years"
+  },
+  {
+    "id": "edge-precision-test",
+    "name": "Precision Test",
+    "category": "Edge Case",
+    "description": "EMI calculation with values that test decimal precision",
+    "input": {
+      "principal": "9999.99",
+      "duration_years": 4.99,
+      "interest_rate": "7.49"
+    },
+    "expected_results": {
+      "emi_amount": "199.96",
+      "total_amount": "11997.60",
+      "interest_amount": "1997.61",
+      "number_of_installments": 60
+    },
+    "expected_behavior": "Valid calculation with precise decimal values"
+  },
+  {
+    "id": "edge-large-values-long-duration",
+    "name": "Large Principal with Long Duration",
+    "category": "Edge Case",
+    "description": "EMI calculation with maximum principal and maximum duration",
+    "input": {
+      "principal": "999999999.99",
+      "duration_years": 30,
+      "interest_rate": "7.5"
+    },
+    "expected_results": {
+      "emi_amount": "7067749.97",
+      "total_amount": "2544389989.20",
+      "interest_amount": "1544389989.21",
+      "number_of_installments": 360
+    },
+    "expected_behavior": "Valid calculation with maximum values for both principal and duration"
+  },
+  {
+    "id": "edge-invalid-negative-principal",
+    "name": "Negative Principal Amount",
+    "category": "Invalid Input",
+    "description": "EMI calculation with negative principal amount should be rejected",
+    "input": {
+      "principal": "-10000.00",
+      "duration_years": 5,
+      "interest_rate": "7.5"
+    },
+    "expected_error": "Principal amount must be a positive number",
+    "expected_behavior": "Validation error for negative principal"
+  },
+  {
+    "id": "edge-invalid-zero-principal",
+    "name": "Zero Principal Amount",
+    "category": "Invalid Input",
+    "description": "EMI calculation with zero principal amount should be rejected",
+    "input": {
+      "principal": "0.00",
+      "duration_years": 5,
+      "interest_rate": "7.5"
+    },
+    "expected_error": "Principal amount must be greater than zero",
+    "expected_behavior": "Validation error for zero principal"
+  },
+  {
+    "id": "edge-invalid-negative-duration",
+    "name": "Negative Loan Duration",
+    "category": "Invalid Input",
+    "description": "EMI calculation with negative loan duration should be rejected",
+    "input": {
+      "principal": "10000.00",
+      "duration_years": -5,
+      "interest_rate": "7.5"
+    },
+    "expected_error": "Loan duration must be a positive number",
+    "expected_behavior": "Validation error for negative duration"
+  },
+  {
+    "id": "edge-invalid-zero-duration",
+    "name": "Zero Loan Duration",
+    "category": "Invalid Input",
+    "description": "EMI calculation with zero loan duration should be rejected",
+    "input": {
+      "principal": "10000.00",
+      "duration_years": 0,
+      "interest_rate": "7.5"
+    },
+    "expected_error": "Loan duration must be greater than zero",
+    "expected_behavior": "Validation error for zero duration"
+  },
+  {
+    "id": "edge-invalid-negative-interest",
+    "name": "Negative Interest Rate",
+    "category": "Invalid Input",
+    "description": "EMI calculation with negative interest rate should be rejected",
+    "input": {
+      "principal": "10000.00",
+      "duration_years": 5,
+      "interest_rate": "-7.5"
+    },
+    "expected_error": "Interest rate must be a non-negative number",
+    "expected_behavior": "Validation error for negative interest rate"
+  }
+]
