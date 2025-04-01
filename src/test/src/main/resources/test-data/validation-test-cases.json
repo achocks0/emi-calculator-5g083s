@@ -1,0 +1,538 @@
+{
+  "description": "Test cases for input validation in the Compound Interest Calculator application",
+  "version": "1.0",
+  "test_cases": [
+    {
+      "id": "principal-valid-1",
+      "name": "Valid principal amount",
+      "category": "Principal Validation",
+      "subcategory": "Standard",
+      "description": "Principal amount with valid format and value",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": true,
+        "error_message": null
+      }
+    },
+    {
+      "id": "principal-empty-1",
+      "name": "Empty principal amount",
+      "category": "Principal Validation",
+      "subcategory": "Standard",
+      "description": "Principal amount with empty string value",
+      "input": {
+        "principal": "",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Principal amount is required."
+      }
+    },
+    {
+      "id": "principal-null-1",
+      "name": "Null principal amount",
+      "category": "Principal Validation",
+      "subcategory": "Standard",
+      "description": "Principal amount with null value",
+      "input": {
+        "principal": null,
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Principal amount is required."
+      }
+    },
+    {
+      "id": "principal-negative-1",
+      "name": "Negative principal amount",
+      "category": "Principal Validation",
+      "subcategory": "Standard",
+      "description": "Principal amount with negative value",
+      "input": {
+        "principal": "-1000.00",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Principal amount must be a positive number."
+      }
+    },
+    {
+      "id": "principal-zero-1",
+      "name": "Zero principal amount",
+      "category": "Principal Validation",
+      "subcategory": "Standard",
+      "description": "Principal amount with zero value",
+      "input": {
+        "principal": "0.00",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Principal amount must be a positive number."
+      }
+    },
+    {
+      "id": "principal-format-1",
+      "name": "Invalid format principal amount",
+      "category": "Principal Validation",
+      "subcategory": "Standard",
+      "description": "Principal amount with non-numeric characters",
+      "input": {
+        "principal": "1000.abc",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Principal amount must be a number with up to 2 decimal places."
+      }
+    },
+    {
+      "id": "principal-format-2",
+      "name": "Too many decimal places in principal",
+      "category": "Principal Validation",
+      "subcategory": "Standard",
+      "description": "Principal amount with more than 2 decimal places",
+      "input": {
+        "principal": "1000.123",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Principal amount must be a number with up to 2 decimal places."
+      }
+    },
+    {
+      "id": "principal-min-1",
+      "name": "Principal below minimum",
+      "category": "Principal Validation",
+      "subcategory": "Boundary",
+      "description": "Principal amount below the minimum allowed value",
+      "input": {
+        "principal": "999.99",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Principal amount must be at least $1,000.00."
+      }
+    },
+    {
+      "id": "principal-min-2",
+      "name": "Principal at minimum",
+      "category": "Principal Validation",
+      "subcategory": "Boundary",
+      "description": "Principal amount exactly at the minimum allowed value",
+      "input": {
+        "principal": "1000.00",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": true,
+        "error_message": null
+      }
+    },
+    {
+      "id": "principal-min-3",
+      "name": "Principal just above minimum",
+      "category": "Principal Validation",
+      "subcategory": "Boundary",
+      "description": "Principal amount just above the minimum allowed value",
+      "input": {
+        "principal": "1000.01",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": true,
+        "error_message": null
+      }
+    },
+    {
+      "id": "principal-max-1",
+      "name": "Principal just below maximum",
+      "category": "Principal Validation",
+      "subcategory": "Boundary",
+      "description": "Principal amount just below the maximum allowed value",
+      "input": {
+        "principal": "999999.99",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": true,
+        "error_message": null
+      }
+    },
+    {
+      "id": "principal-max-2",
+      "name": "Principal at maximum",
+      "category": "Principal Validation",
+      "subcategory": "Boundary",
+      "description": "Principal amount exactly at the maximum allowed value",
+      "input": {
+        "principal": "1000000.00",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": true,
+        "error_message": null
+      }
+    },
+    {
+      "id": "principal-max-3",
+      "name": "Principal above maximum",
+      "category": "Principal Validation",
+      "subcategory": "Boundary",
+      "description": "Principal amount above the maximum allowed value",
+      "input": {
+        "principal": "1000000.01",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Principal amount cannot exceed $1,000,000.00."
+      }
+    },
+    {
+      "id": "duration-valid-1",
+      "name": "Valid loan duration",
+      "category": "Duration Validation",
+      "subcategory": "Standard",
+      "description": "Loan duration with valid format and value",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": true,
+        "error_message": null
+      }
+    },
+    {
+      "id": "duration-empty-1",
+      "name": "Empty loan duration",
+      "category": "Duration Validation",
+      "subcategory": "Standard",
+      "description": "Loan duration with empty string value",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": ""
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Loan duration is required."
+      }
+    },
+    {
+      "id": "duration-null-1",
+      "name": "Null loan duration",
+      "category": "Duration Validation",
+      "subcategory": "Standard",
+      "description": "Loan duration with null value",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": null
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Loan duration is required."
+      }
+    },
+    {
+      "id": "duration-negative-1",
+      "name": "Negative loan duration",
+      "category": "Duration Validation",
+      "subcategory": "Standard",
+      "description": "Loan duration with negative value",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "-5"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Loan duration must be a positive whole number."
+      }
+    },
+    {
+      "id": "duration-zero-1",
+      "name": "Zero loan duration",
+      "category": "Duration Validation",
+      "subcategory": "Standard",
+      "description": "Loan duration with zero value",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "0"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Loan duration must be a positive whole number."
+      }
+    },
+    {
+      "id": "duration-format-1",
+      "name": "Decimal loan duration",
+      "category": "Duration Validation",
+      "subcategory": "Standard",
+      "description": "Loan duration with decimal value",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "5.5"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Loan duration must be a whole number."
+      }
+    },
+    {
+      "id": "duration-format-2",
+      "name": "Non-numeric loan duration",
+      "category": "Duration Validation",
+      "subcategory": "Standard",
+      "description": "Loan duration with non-numeric characters",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "5years"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Loan duration must be a whole number."
+      }
+    },
+    {
+      "id": "duration-min-1",
+      "name": "Duration below minimum",
+      "category": "Duration Validation",
+      "subcategory": "Boundary",
+      "description": "Loan duration below the minimum allowed value",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "0"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Loan duration must be a positive whole number."
+      }
+    },
+    {
+      "id": "duration-min-2",
+      "name": "Duration at minimum",
+      "category": "Duration Validation",
+      "subcategory": "Boundary",
+      "description": "Loan duration exactly at the minimum allowed value",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "1"
+      },
+      "expected_result": {
+        "valid": true,
+        "error_message": null
+      }
+    },
+    {
+      "id": "duration-min-3",
+      "name": "Duration just above minimum",
+      "category": "Duration Validation",
+      "subcategory": "Boundary",
+      "description": "Loan duration just above the minimum allowed value",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "2"
+      },
+      "expected_result": {
+        "valid": true,
+        "error_message": null
+      }
+    },
+    {
+      "id": "duration-max-1",
+      "name": "Duration just below maximum",
+      "category": "Duration Validation",
+      "subcategory": "Boundary",
+      "description": "Loan duration just below the maximum allowed value",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "29"
+      },
+      "expected_result": {
+        "valid": true,
+        "error_message": null
+      }
+    },
+    {
+      "id": "duration-max-2",
+      "name": "Duration at maximum",
+      "category": "Duration Validation",
+      "subcategory": "Boundary",
+      "description": "Loan duration exactly at the maximum allowed value",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "30"
+      },
+      "expected_result": {
+        "valid": true,
+        "error_message": null
+      }
+    },
+    {
+      "id": "duration-max-3",
+      "name": "Duration above maximum",
+      "category": "Duration Validation",
+      "subcategory": "Boundary",
+      "description": "Loan duration above the maximum allowed value",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "31"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Loan duration cannot exceed 30 years."
+      }
+    },
+    {
+      "id": "combined-valid-1",
+      "name": "Both inputs valid",
+      "category": "Combined Validation",
+      "subcategory": "Standard",
+      "description": "Both principal amount and loan duration are valid",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": true,
+        "error_message": null
+      }
+    },
+    {
+      "id": "combined-invalid-1",
+      "name": "Invalid principal, valid duration",
+      "category": "Combined Validation",
+      "subcategory": "Standard",
+      "description": "Principal amount is invalid, loan duration is valid",
+      "input": {
+        "principal": "-1000.00",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Principal amount must be a positive number."
+      }
+    },
+    {
+      "id": "combined-invalid-2",
+      "name": "Valid principal, invalid duration",
+      "category": "Combined Validation",
+      "subcategory": "Standard",
+      "description": "Principal amount is valid, loan duration is invalid",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "-5"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Loan duration must be a positive whole number."
+      }
+    },
+    {
+      "id": "combined-invalid-3",
+      "name": "Both inputs invalid",
+      "category": "Combined Validation",
+      "subcategory": "Standard",
+      "description": "Both principal amount and loan duration are invalid",
+      "input": {
+        "principal": "-1000.00",
+        "duration_years": "-5"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Principal amount must be a positive number."
+      }
+    },
+    {
+      "id": "ui-validation-1",
+      "name": "UI validation - empty fields",
+      "category": "UI Validation",
+      "subcategory": "UI",
+      "description": "Testing UI validation for empty input fields",
+      "input": {
+        "principal": "",
+        "duration_years": ""
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Principal amount is required.",
+        "ui_elements": {
+          "principal_field_highlighted": true,
+          "duration_field_highlighted": false,
+          "error_message_displayed": true,
+          "calculate_button_enabled": true
+        }
+      }
+    },
+    {
+      "id": "ui-validation-2",
+      "name": "UI validation - invalid principal format",
+      "category": "UI Validation",
+      "subcategory": "UI",
+      "description": "Testing UI validation for invalid principal format",
+      "input": {
+        "principal": "abc",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Principal amount must be a number with up to 2 decimal places.",
+        "ui_elements": {
+          "principal_field_highlighted": true,
+          "duration_field_highlighted": false,
+          "error_message_displayed": true,
+          "calculate_button_enabled": true
+        }
+      }
+    },
+    {
+      "id": "ui-validation-3",
+      "name": "UI validation - invalid duration format",
+      "category": "UI Validation",
+      "subcategory": "UI",
+      "description": "Testing UI validation for invalid duration format",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "abc"
+      },
+      "expected_result": {
+        "valid": false,
+        "error_message": "Loan duration must be a whole number.",
+        "ui_elements": {
+          "principal_field_highlighted": false,
+          "duration_field_highlighted": true,
+          "error_message_displayed": true,
+          "calculate_button_enabled": true
+        }
+      }
+    },
+    {
+      "id": "performance-validation-1",
+      "name": "Validation performance test",
+      "category": "Performance",
+      "subcategory": "Performance",
+      "description": "Performance test for input validation",
+      "input": {
+        "principal": "5000.00",
+        "duration_years": "5"
+      },
+      "expected_result": {
+        "valid": true,
+        "error_message": null
+      },
+      "performance_criteria": {
+        "max_execution_time_ms": 50,
+        "iterations": 1000
+      }
+    }
+  ]
+}
